@@ -15,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.category.index');
+        $categories = Category::all();
+        return view('backend.category.index', compact('categories'));
     }
 
     /**
@@ -36,7 +37,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $request->validate([
+            'category_name' => 'required'
+        ]);
+        foreach ($request->category_name as $category) {
+            Category::create([
+                'category_name' => $category,
+                'slug' => $category,
+                'added_by' => auth()->id(),
+            ]);
+        }
+        return back();
     }
 
     /**
