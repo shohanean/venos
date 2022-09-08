@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::latest()->get();
         return view('backend.category.index', compact('categories'));
     }
 
@@ -43,7 +44,7 @@ class CategoryController extends Controller
         foreach ($request->category_name as $category) {
             Category::create([
                 'category_name' => $category,
-                'slug' => $category,
+                'slug' => Str::slug($category),
                 'added_by' => auth()->id(),
             ]);
         }
