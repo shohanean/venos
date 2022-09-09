@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->get();
+        $categories = Category::with(['user', 'subcategory'])->latest()->get();
         return view('backend.category.index', compact('categories'));
     }
 
@@ -45,6 +46,23 @@ class CategoryController extends Controller
             Category::create([
                 'category_name' => $category,
                 'slug' => Str::slug($category),
+                'added_by' => auth()->id(),
+            ]);
+        }
+        return back();
+    }
+    public function subcategory_store(Request $request)
+    {
+        $request->validate([
+            'category_id' => 'required'
+        ],[
+            'category_id.required' => 'You have to choose a category first'
+        ]);
+        foreach ($request->subcategory_name as $subcategory) {
+            Subcategory::create([
+                'subcategory_name' => $subcategory,
+                'category_id' => $request->category_id,
+                'slug' => Str::slug($subcategory),
                 'added_by' => auth()->id(),
             ]);
         }

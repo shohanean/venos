@@ -69,34 +69,31 @@ active
             <!--begin::Body-->
             <div class="card-body pt-2">
                 <!--begin::Form-->
-                <form method="POST" action="{{ route('category.store') }}">
+                <form method="POST" action="{{ route('subcategory.store') }}">
                     @csrf
                     <!--begin::Input group-->
                     <label>
                         <h5 class="font-size-lg text-dark font-weight-bold">Category Name</h5>
                     </label>
-                    <div class="input-group mb-5">
-                        <select id="category_choose_dropdown" name="" class="form-select">
+                    <div class="input-group">
+                        <select id="category_choose_dropdown" name="category_id" class="form-select">
                             <option value="">-Select One Category-</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                             @endforeach
                         </select>
-                        @error('category_name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
+                    @error('category_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="input-group mb-5">
+                    <div class="input-group my-5">
                         <label>
                             <h5 class="font-size-lg text-dark font-weight-bold">Subcategory Name</h5>
                             <p>You can add multiple at a time by seperating with comma (,)</p>
                         </label>
-                        <select id="subcategory_name" name="category_name[]" class="form-control" multiple="multiple"></select>
-                        @error('category_name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <select id="subcategory_name" name="subcategory_name[]" class="form-control" multiple="multiple"></select>
                     </div>
                     <!--end::Input group-->
 
@@ -120,8 +117,7 @@ active
             <!--begin::Header-->
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder fs-3 mb-1">User Statistics</span>
-                    {{-- <span class="text-muted mt-1 fw-bold fs-7">Over {{ $users->count() }} members</span> --}}
+                    <span class="card-label fw-bolder fs-3 mb-1">Category & Subcategory</span>
                 </h3>
             </div>
             <!--end::Header-->
@@ -134,11 +130,12 @@ active
                         <!--begin::Table head-->
                         <thead>
                             <tr class="fw-bolder text-muted">
-                                <th class="w-25px">asdasd</th>
-                                <th class="min-w-200px">Authors</th>
-                                <th class="min-w-150px">Company</th>
-                                <th class="min-w-150px">Progress</th>
-                                <th class="min-w-100px text-end">Actions</th>
+                                <th>SL No.</th>
+                                <th>Category Name</th>
+                                <th>Category Added By</th>
+                                <th>Subcategory</th>
+                                <th>Category Slug</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <!--end::Table head-->
@@ -146,12 +143,24 @@ active
                         <tbody>
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->added_by }}</td>
+                                    <td>{{ $category->user->name }}</td>
+                                    <td>
+                                        @forelse ($category->subcategory as $subcat)
+                                        <span class="badge badge-light-success text-dark fw-bold my-1">
+                                            <i class="fa fa-tag"></i>&nbsp;{{ $subcat->subcategory_name }}
+                                        </span>
+                                        @empty
+                                        -
+                                        @endforelse
+                                    </td>
                                     <td>{{ $category->slug }}</td>
-                                    <td>asdas</td>
-                                    <td>asdas</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info">
+                                            <i class="fa fa-pen"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

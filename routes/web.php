@@ -57,4 +57,6 @@ Route::middleware(['auth'])->group(function () {
 
     //Category Routes
     Route::resource('category', CategoryController::class);
+
+    Route::post('subcategory', [CategoryController::class, 'subcategory_store'])->name('subcategory.store');
 });
