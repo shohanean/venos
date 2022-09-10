@@ -42,14 +42,21 @@ class CategoryController extends Controller
         $request->validate([
             'category_name' => 'required'
         ]);
-        foreach ($request->category_name as $category) {
-            Category::create([
-                'category_name' => $category,
-                'slug' => Str::slug($category),
-                'added_by' => auth()->id(),
-            ]);
+        $status = [];
+        foreach ($request->category_name as $key => $category) {
+            if(Category::where('category_name', $category)->exists()){
+                $status["exists"][$key + 1] = $category;
+            }
+            else{
+                Category::create([
+                    'category_name' => $category,
+                    'slug' => Str::slug($category),
+                    'added_by' => auth()->id(),
+                ]);
+                $status["added"][$key + 1] = $category;
+            }
         }
-        return back();
+        return back()->with('status', $status);
     }
     public function subcategory_store(Request $request)
     {

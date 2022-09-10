@@ -28,6 +28,24 @@ active
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body pt-2">
+                @if(session('status'))
+                    @if (isset(session('status')['added']))
+                        <div class="alert alert-success">
+                            <p>Category Added Successfully</p>
+                            @foreach (session('status')['added'] as $added)
+                                <li>{{ $added }}</li>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if (isset(session('status')['exists']))
+                        <div class="alert alert-danger">
+                            <p>Category Already Exists</p>
+                            @foreach (session('status')['exists'] as $exists)
+                                <li>{{ $exists }}</li>
+                            @endforeach
+                        </div>
+                    @endif
+                @endif
                 <!--begin::Form-->
                 <form method="POST" action="{{ route('category.store') }}">
                     @csrf
@@ -152,7 +170,7 @@ active
                                             <i class="fa fa-tag"></i>&nbsp;{{ $subcat->subcategory_name }}
                                         </span>
                                         @empty
-                                        -
+                                        <i class="fa fa-stop text-danger"></i> There is no subcategory under this category
                                         @endforelse
                                     </td>
                                     <td>{{ $category->slug }}</td>
