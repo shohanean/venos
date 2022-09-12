@@ -23,6 +23,7 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script defer src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <!--end::Select2.js-->
+        @yield('header_styles')
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -69,14 +70,18 @@
 										<span class="menu-title">Home</span>
 									</a>
 								</div>
-                                <div class="menu-item">
-									<a class="menu-link @yield('category.index')" href="{{ route('category.index') }}">
-										<span class="menu-icon">
-                                            <i class="fa fa-list-alt"></i>
-										</span>
-										<span class="menu-title">Category & Subcategory</span>
-									</a>
-								</div>
+                                @can ('can manage category & subcategory')
+                                    <div class="menu-item">
+    									<a class="menu-link @yield('category.index')" href="{{ route('category.index') }}">
+    										<span class="menu-icon">
+                                                <i class="fa fa-list-alt"></i>
+    										</span>
+    										<span class="menu-title">
+                                                Category & Subcategory <span class="badge bg-info ms-1">{{ total_categories() }}</span>
+                                            </span>
+    									</a>
+    								</div>
+                                @endcan
                                 @canany(['can add user','can see user list','can role user','can see role list'])
                                     <div data-kt-menu-trigger="click" class="menu-item @yield('user_management') menu-accordion mb-1">
                                         <span class="menu-link">

@@ -15,6 +15,7 @@ active
 
 @section('content')
 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
+    @can ('can manage category & subcategory')
     <!--begin::Col-->
     <div class="col-xl-6">
         <!--begin::List Widget 3-->
@@ -208,6 +209,11 @@ active
         <!--end::Tables Widget 9-->
     </div>
     <!--end::Col-->
+    @else
+    <div class="col-xl-12">
+        @include('backend.inc.alert.no_permission')
+    </div>
+    @endcan
 </div>
 @endsection
 @section('footer_scripts')
@@ -223,6 +229,5 @@ active
         });
         // $('#category_choose_dropdown').select2();
     });
-
 </script>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Profile;
+use App\Models\Category;
 use App\Models\User;
 
 function profile_compleation($id){
@@ -33,5 +34,9 @@ function profile_compleation($id){
         $percentage += 35;
     }
     return $percentage;
+}
+
+function total_categories(){
+    return Category::count();
 }
 ?>

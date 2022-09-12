@@ -23,7 +23,7 @@ class RoleController extends Controller
         //   ]);
         // }
         // Permission::create([
-        //   'name' => 'can delete role'
+        //   'name' => 'can manage category & subcategory'
         // ]);
         // auth()->user()->assignRole('Family');
         return view('backend.role.index');
