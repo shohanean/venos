@@ -13,6 +13,182 @@
 @endsection
 
 @section('content')
+<div class="row g-5 g-xl-8">
+    <!--begin::Col-->
+    <div class="col-xl-12">
+        <!--begin::Mixed Widget 14-->
+        <div class="card card-xxl-stretch mb-5 mb-xl-8" style="background-color: #CBF0F4">
+            <!--begin::Body-->
+            <div class="card-body d-flex flex-column">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column mb-7">
+                    <!--begin::Title-->
+                    <a href="#" class="text-dark text-hover-primary fw-bolder fs-3">Summary</a>
+                    <!--end::Title-->
+                </div>
+                <!--end::Wrapper-->
+                <!--begin::Row-->
+                <div class="row g-0">
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-user-check fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ $users->total() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Active Users</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-tasks fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Roles</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-lock fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Permissions</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-list fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_categories() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Categories</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-list-alt fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Subcategories</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-database fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Backup</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-list fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_categories() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Categories</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-list fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_categories() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Categories</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Row-->
+            </div>
+        </div>
+        <!--end::Mixed Widget 14-->
+    </div>
+    <!--end::Col-->
+</div>
 <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
     <!--begin::Col-->
     <div class="col-xl-3">
