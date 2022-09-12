@@ -65,15 +65,23 @@ class CategoryController extends Controller
         ],[
             'category_id.required' => 'You have to choose a category first'
         ]);
-        foreach ($request->subcategory_name as $subcategory) {
-            Subcategory::create([
-                'subcategory_name' => $subcategory,
-                'category_id' => $request->category_id,
-                'slug' => Str::slug($subcategory),
-                'added_by' => auth()->id(),
-            ]);
+        if(!$request->subcategory_name){
+            return back()->withErrors(['subcategory'=> 'Subcategory name field is required.']);
         }
-        return back();
+        foreach ($request->subcategory_name as $subcategory) {
+            if(!Subcategory::where([
+                'subcategory_name' => $subcategory,
+                'category_id' => $request->category_id
+            ])->exists()){
+                Subcategory::create([
+                    'subcategory_name' => $subcategory,
+                    'category_id' => $request->category_id,
+                    'slug' => Str::slug($subcategory),
+                    'added_by' => auth()->id(),
+                ]);
+            }
+        }
+        return back()->with('subcategory_status', 'Subcategory added successfully!');
     }
 
     /**

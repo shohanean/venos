@@ -55,7 +55,7 @@ active
                             <h5 class="font-size-lg text-dark font-weight-bold">Category Name</h5>
                             <p>You can add multiple at a time by seperating with comma (,)</p>
                         </label>
-                        <select id="category_name" name="category_name[]" class="form-control" multiple="multiple"></select>
+                        <select id="category_name" name="category_name[]" class="form-control @error('category_name') is-invalid @enderror" multiple="multiple"></select>
                         @error('category_name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -86,6 +86,9 @@ active
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body pt-2">
+                @if (session('subcategory_status'))
+                    <div class="alert alert-success">{{ session('subcategory_status') }}</div>
+                @endif
                 <!--begin::Form-->
                 <form method="POST" action="{{ route('subcategory.store') }}">
                     @csrf
@@ -94,7 +97,7 @@ active
                         <h5 class="font-size-lg text-dark font-weight-bold">Category Name</h5>
                     </label>
                     <div class="input-group">
-                        <select id="category_choose_dropdown" name="category_id" class="form-select">
+                        <select id="category_choose_dropdown" name="category_id" class="form-select @error('category_id') is-invalid @enderror">
                             <option value="">-Select One Category-</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -111,7 +114,10 @@ active
                             <h5 class="font-size-lg text-dark font-weight-bold">Subcategory Name</h5>
                             <p>You can add multiple at a time by seperating with comma (,)</p>
                         </label>
-                        <select id="subcategory_name" name="subcategory_name[]" class="form-control" multiple="multiple"></select>
+                        <select id="subcategory_name" name="subcategory_name[]" class="form-control @error('subcategory') is-invalid @enderror" multiple="multiple"></select>
+                        @error('subcategory')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <!--end::Input group-->
 
@@ -159,7 +165,7 @@ active
                         <!--end::Table head-->
                         <!--begin::Table body-->
                         <tbody>
-                            @foreach ($categories as $category)
+                            @forelse ($categories as $category)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $category->category_name }}</td>
@@ -180,7 +186,13 @@ active
                                         </button>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr class="text-center">
+                                    <td colspan="50">
+                                        <div class="alert alert-danger">No Category to Show</div>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                         <!--end::Table body-->
                     </table>
