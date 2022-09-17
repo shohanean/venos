@@ -25,6 +25,8 @@
                     <!--begin::Title-->
                     <a href="#" class="text-dark text-hover-primary fw-bolder fs-3">Summary</a>
                     <!--end::Title-->
+                    <span class="counter">1,234,567.00</span>
+
                 </div>
                 <!--end::Wrapper-->
                 <!--begin::Row-->
@@ -60,7 +62,7 @@
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div>
-                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ $roles }}</div>
                                 <div class="fs-7 text-gray-600 fw-bold">Roles</div>
                             </div>
                             <!--end::Title-->
@@ -79,7 +81,7 @@
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div>
-                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ $permissions }}</div>
                                 <div class="fs-7 text-gray-600 fw-bold">Permissions</div>
                             </div>
                             <!--end::Title-->
@@ -117,7 +119,7 @@
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div>
-                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ $subcategories }}</div>
                                 <div class="fs-7 text-gray-600 fw-bold">Subcategories</div>
                             </div>
                             <!--end::Title-->
@@ -136,7 +138,7 @@
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div>
-                                <div class="fs-5 text-dark fw-bolder lh-1">-</div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">Null</div>
                                 <div class="fs-7 text-gray-600 fw-bold">Backup</div>
                             </div>
                             <!--end::Title-->
@@ -149,14 +151,14 @@
                             <!--begin::Symbol-->
                             <div class="symbol symbol-60px me-3">
                                 <div class="symbol-label bg-white bg-opacity-50">
-                                    <i class="fa fa-list fa-2x"></i>
+                                    <i class="fa fa-envelope fa-2x"></i>
                                 </div>
                             </div>
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div>
-                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_categories() }}</div>
-                                <div class="fs-7 text-gray-600 fw-bold">Categories</div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">Null</div>
+                                <div class="fs-7 text-gray-600 fw-bold">SMS</div>
                             </div>
                             <!--end::Title-->
                         </div>
@@ -168,14 +170,14 @@
                             <!--begin::Symbol-->
                             <div class="symbol symbol-60px me-3">
                                 <div class="symbol-label bg-white bg-opacity-50">
-                                    <i class="fa fa-list fa-2x"></i>
+                                    <i class="fa fa-gift fa-2x"></i>
                                 </div>
                             </div>
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div>
-                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_categories() }}</div>
-                                <div class="fs-7 text-gray-600 fw-bold">Categories</div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">Free</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Package</div>
                             </div>
                             <!--end::Title-->
                         </div>
@@ -481,4 +483,8 @@
     </div>
     <!--end::Col-->
 </div>
+@endsection
+
+@section('footer_scripts')
+
 @endsection

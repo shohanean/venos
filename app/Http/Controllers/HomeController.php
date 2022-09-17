@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Imports\UsersImport;
+use App\Models\Subcategory;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -31,7 +33,13 @@ class HomeController extends Controller
         //   'name' => 'can restore user'
         // ]);
         // User::find(1)->assignRole('Super Admin');
+        // Role::count();
+        // Permission::count();
+
         return view('home',[
+            'roles' => Role::count(),
+            'permissions' => Permission::count(),
+            'subcategories' => Subcategory::count(),
             'users' => User::latest()->paginate(10)
         ]);
     }
