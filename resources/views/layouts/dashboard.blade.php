@@ -82,6 +82,18 @@
     									</a>
     								</div>
                                 @endcan
+                                @can ('can manage customer')
+                                    <div class="menu-item">
+    									<a class="menu-link @yield('customer.index')" href="{{ route('customer.index') }}">
+    										<span class="menu-icon">
+                                                <i class="fa fa-user"></i>
+    										</span>
+    										<span class="menu-title">
+                                                Customer <span class="badge bg-info ms-1">{{ total_customers() }}</span>
+                                            </span>
+    									</a>
+    								</div>
+                                @endcan
                                 @canany(['can add user','can see user list','can role user','can see role list'])
                                     <div data-kt-menu-trigger="click" class="menu-item @yield('user_management') menu-accordion mb-1">
                                         <span class="menu-link">

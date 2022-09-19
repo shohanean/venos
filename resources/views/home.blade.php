@@ -23,10 +23,8 @@
                 <!--begin::Wrapper-->
                 <div class="d-flex flex-column mb-7">
                     <!--begin::Title-->
-                    <a href="#" class="text-dark text-hover-primary fw-bolder fs-3">Summary</a>
+                    <a href="" class="text-dark text-hover-primary fw-bolder fs-3">Summary</a>
                     <!--end::Title-->
-                    <span class="counter">1,234,567.00</span>
-
                 </div>
                 <!--end::Wrapper-->
                 <!--begin::Row-->

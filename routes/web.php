@@ -2,7 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Route,Auth};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\{HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController};
+use App\Http\Controllers\{HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController, CustomerController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Category Routes
     Route::resource('category', CategoryController::class);
-
     Route::post('subcategory', [CategoryController::class, 'subcategory_store'])->name('subcategory.store');
+
+    //Customer Routes
+    Route::resource('customer', CustomerController::class);
 });
