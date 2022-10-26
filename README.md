@@ -38,6 +38,19 @@ composer install
 ```
 cp .env.example .env
 ```
+- Currently our project do not have any key, we have generate it using
+```
+php artisan key:generate
+```
+- Basic setup is done at this point, now we have work on `.env`. Below changes should be done at .env file
+Variable Name | Description
+--- | ---
+PROJECT_FAVICON | demo text
+PROJECT_LOGO | demo text
+APP_NAME | demo text
+APP_DESCRIPTION | demo text
+APP_DEBUG | demo text
+
 ## Tools Used
 
 - **[Laravel Livewire](https://laravel-livewire.com/)**
