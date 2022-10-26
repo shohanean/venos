@@ -51,6 +51,30 @@ PROJECT_LOGO | provide a link of logo link
 APP_NAME | app name for the entire project
 APP_DESCRIPTION | provide short description about the project
 APP_DEBUG | `true` will show the errors, `false` will hide errors by showing common exception page
+DB_* | database settings to connect the database with this project
+MAIL_* | database settings to send email via SMTP
+NOCAPTCHA_* | this project used nocaptcha, credentials can be generated from [here](https://www.google.com/recaptcha/about/), version should be 2.
+
+- Now migrate the database using
+```
+php artisan migrate
+```
+
+- Seed the database using
+```
+php artisan db:seed
+```
+
+- As we have used `world` database we have to run
+```
+php artisan world:init
+```
+
+- At last, we can now run the project using
+```
+php artisan serve
+```
+
 ## Tools Used
 
 - **[Laravel Livewire](https://laravel-livewire.com/)**
