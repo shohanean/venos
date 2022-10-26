@@ -20,8 +20,14 @@ Packages List is given below:
 
 ## Setup
 
-- **Clone The Repository**
-
+- First of all we have to `clone` the project at our local machine using below command
+```
+git clone https://github.com/shohanean/venos.git
+```
+- Now change the command line present working directory (pwd) by
+```
+cd venos
+```
 ## Tools Used
 
 - **[Laravel Livewire](https://laravel-livewire.com/)**
