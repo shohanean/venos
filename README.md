@@ -43,6 +43,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 - Basic setup is done at this point, now we have work on `.env`. Below changes should be done at .env file
+
 Variable Name | Description
 --- | ---
 PROJECT_FAVICON | demo text
