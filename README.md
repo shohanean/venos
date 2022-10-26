@@ -46,17 +46,11 @@ php artisan key:generate
 
 Variable Name | Description
 --- | ---
-PROJECT_FAVICON | demo text
-PROJECT_LOGO | demo text
-APP_NAME | demo text
-APP_DESCRIPTION | demo text
-APP_DEBUG | demo text
-
-
-Markdown | Less
---- | ---
-no | ssss renders
-1 | 2
+PROJECT_FAVICON | provide a link of favicon image
+PROJECT_LOGO | provide a link of logo link
+APP_NAME | app name for the entire project
+APP_DESCRIPTION | provide short description about the project
+APP_DEBUG | `true` will show the errors, `false` will hide errors by showing common exception page
 ## Tools Used
 
 - **[Laravel Livewire](https://laravel-livewire.com/)**
