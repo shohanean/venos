@@ -9,7 +9,8 @@
 
 ## About This Project
 
-This is a starter project for Laravel with various packages included. 
+This is project is the ultimate Point of Sales (POS) everyone looking for. Built with `Laravel` & various packages included.
+
 Packages List is given below:
 
 - Avatar Generator [laravolt/avatar](https://github.com/laravolt/avatar).
@@ -27,6 +28,15 @@ git clone https://github.com/shohanean/venos.git
 - Now change the command line present working directory (pwd) by
 ```
 cd venos
+```
+- Download the `composer` from [here](https://getcomposer.org/download/)
+- Now with help of `composer` download all required packages those need to run this laravel project
+```
+composer install
+```
+- Now, we need to copy the .env.example file as .env file for our laravel project. Use below command to copy the file
+```
+cp .env.example .env
 ```
 ## Tools Used
 
