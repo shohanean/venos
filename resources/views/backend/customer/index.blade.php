@@ -23,14 +23,14 @@ active
             <!--begin::Header-->
             <div class="card-header border-0">
                 <h3 class="card-title fw-bolder text-dark">
-                    Add Subcategory
+                    Add New Customer
                 </h3>
             </div>
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body pt-2">
-                @if (session('subcategory_status'))
-                    <div class="alert alert-success">{{ session('subcategory_status') }}</div>
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
                 <!--begin::Form-->
                 <form method="POST" action="{{ route('customer.store') }}">
@@ -42,7 +42,7 @@ active
                                 <h6 class="font-size-lg text-dark font-weight-bold">Customer Name</h6>
                             </label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -52,7 +52,7 @@ active
                                 <h6 class="font-size-lg text-dark font-weight-bold required">Customer Phone Number</h6>
                             </label>
                             <div class="input-group">
-                                <input type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number">
+                                <input type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}">
                             </div>
                             @error('phone_number')
                                 <span class="text-danger">{{ $message }}</span>
@@ -65,7 +65,7 @@ active
                                 <h6 class="font-size-lg text-dark font-weight-bold">Customer Email Address</h6>
                             </label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="email_address">
+                                <input type="text" class="form-control" name="email_address" value="{{ old('email_address') }}">
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -77,7 +77,7 @@ active
                                 <h6 class="font-size-lg text-dark font-weight-bold">Customer Address</h6>
                             </label>
                             <div class="input-group">
-                                <textarea name="address" class="form-control" rows="2"></textarea>
+                                <textarea name="address" class="form-control" rows="2">{{ old('address') }}</textarea>
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -87,7 +87,7 @@ active
                                 <h6 class="font-size-lg text-dark font-weight-bold">Tags</h6>
                             </label>
                             <div class="input-group">
-                                <textarea name="tags" class="form-control" rows="2"></textarea>
+                                <textarea name="tags" class="form-control" rows="2">{{ old('address') }}</textarea>
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -112,7 +112,9 @@ active
             <!--begin::Header-->
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder fs-3 mb-1">Customer List</span>
+                    <span class="card-label fw-bolder fs-3 mb-1">
+                        Customer List <span class="badge bg-success">{{ $customers->count() }}</span>
+                    </span>
                 </h3>
             </div>
             <!--end::Header-->
@@ -130,7 +132,7 @@ active
                                 <th>Customer Phone Number</th>
                                 <th>Customer Email Address</th>
                                 <th>Customer Address</th>
-                                <th>Tags</th>
+                                <th>Customer Added</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -144,7 +146,7 @@ active
                                     <td>{{ $customer->phone_number }}</td>
                                     <td>{{ $customer->email_address }}</td>
                                     <td>{{ $customer->address }}</td>
-                                    <td>{{ $customer->tags }}</td>
+                                    <td>{{ $customer->created_at->diffForHumans() }}</td>
 
                                     <td>
                                         <button class="btn btn-sm btn-info">

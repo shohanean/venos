@@ -16,7 +16,7 @@ class CustomerController extends Controller
     public function index()
     {
         return view('backend.customer.index', [
-            'customers' => Customer::all()
+            'customers' => Customer::latest()->get()
         ]);
     }
 
@@ -39,12 +39,12 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'phone_number' => 'required'
+            'phone_number' => 'required|unique:customers,phone_number'
         ]);
         Customer::create($request->except('_token')+[
             'added_by' => auth()->id()
         ]);
-        return back();
+        return back()->withSuccess('Customer Added Successfully!');
     }
 
     /**
