@@ -111,7 +111,7 @@
                                 @endcan
                                 @can ('can manage store')
                                     <div class="menu-item">
-    									<a class="menu-link @yield('store.index')" href="{{ route('supplier.index') }}">
+    									<a class="menu-link @yield('store.index')" href="{{ route('store.index') }}">
     										<span class="menu-icon">
                                                 <i class="fas fa-store"></i>
     										</span>
