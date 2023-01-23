@@ -36,8 +36,14 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        // Store::create($request->except('_token'));
-        // return back();
+        $request->validate([
+            'name' => 'required',
+            'code' => 'required',
+            'phone_number' => 'required',
+        ]);
+
+        Store::create($request->except('_token'));
+        return back();
     }
 
     /**
@@ -82,7 +88,7 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        // $store->delete();
-        // return back();
+        $store->delete();
+        return back();
     }
 }

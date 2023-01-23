@@ -118,6 +118,7 @@
     										<span class="menu-title">
                                                 Store
                                             </span>
+                                            <span class="badge bg-info ms-1 float-end">{{ total_stores() }}</span>
     									</a>
     								</div>
                                 @endcan
