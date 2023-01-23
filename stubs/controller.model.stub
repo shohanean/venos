@@ -15,7 +15,8 @@ class {{ class }} extends Controller
      */
     public function index()
     {
-        // return view('backend.{{ modelVariable }}.index');
+        // ${{ model }}s = {{ model }}::all();
+        // return view('backend.{{ modelVariable }}.index', compact('{{ model }}s'));
     }
 
     /**
@@ -36,7 +37,8 @@ class {{ class }} extends Controller
      */
     public function store({{ storeRequest }} $request)
     {
-        //
+        // {{ model }}::create($request->except('_token'));
+        // return back();
     }
 
     /**
@@ -81,6 +83,7 @@ class {{ class }} extends Controller
      */
     public function destroy({{ model }} ${{ modelVariable }})
     {
-        //
+        // ${{ modelVariable }}->delete();
+        // return back();
     }
 }
