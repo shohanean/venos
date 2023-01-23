@@ -3,6 +3,7 @@
 use App\Models\Profile;
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Supplier;
 use App\Models\User;
 
 function profile_compleation($id){
@@ -42,5 +43,8 @@ function total_categories(){
 }
 function total_customers(){
     return Customer::count();
+}
+function total_suppliers(){
+    return Supplier::count();
 }
 ?>

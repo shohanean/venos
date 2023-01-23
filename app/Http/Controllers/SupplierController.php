@@ -38,7 +38,7 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'phone_number' => 'required'
+            'phone_number' => 'required|unique:suppliers,phone_number'
         ]);
         Supplier::create($request->except('_token'));
         return back()->with('success', 'Supplier added Successfully!');
@@ -52,7 +52,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        // return view('backend.supplier.show');
+        return view('backend.supplier.show', compact('supplier'));
     }
 
     /**
@@ -87,6 +87,6 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-        return back();
+        return back()->with('delete_success', 'Supplier Deleted Successfully!');
     }
 }

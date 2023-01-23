@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->string('email_address');
-            $table->longText('custom_field_1');
-            $table->longText('custom_field_2');
-            $table->longText('custom_field_3');
+            $table->string('name')->nullable();
+            $table->string('phone_number')->unique();
+            $table->string('email_address')->nullable();
+            $table->longText('custom_field_1')->nullable();
+            $table->longText('custom_field_2')->nullable();
+            $table->longText('custom_field_3')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

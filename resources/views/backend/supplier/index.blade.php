@@ -130,6 +130,9 @@ active
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body py-3">
+                @if (session('delete_success'))
+                    <div class="alert alert-warning">{{ session('delete_success') }}</div>
+                @endif
                 <!--begin::Table container-->
                 <div class="table-responsive">
                     <!--begin::Table-->
@@ -141,9 +144,6 @@ active
                                 <th>Supplier Name</th>
                                 <th>Supplier Phone Number</th>
                                 <th>Supplier Email Address</th>
-                                <th>Custom Field 1</th>
-                                <th>Custom Field 2</th>
-                                <th>Custom Field 3</th>
                                 <th>Supplier Added</th>
                                 <th>Action</th>
                             </tr>
@@ -157,19 +157,22 @@ active
                                     <td>{{ $supplier->name }}</td>
                                     <td>{{ $supplier->phone_number }}</td>
                                     <td>{{ $supplier->email_address }}</td>
-                                    <td>{{ $supplier->custom_field_1 }}</td>
-                                    <td>{{ $supplier->custom_field_2 }}</td>
-                                    <td>{{ $supplier->custom_field_3 }}</td>
                                     <td>{{ $supplier->created_at->diffForHumans() }}</td>
 
                                     <td>
-                                        <form action="{{ route('supplier.destroy', $supplier->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <form action="{{ route('supplier.destroy', $supplier->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                                <a href="{{ route('supplier.show', $supplier->id) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-file"></i>
+                                                </a>
+                                            </form>
+                                        </div>
+
                                     </td>
                                 </tr>
                             @empty

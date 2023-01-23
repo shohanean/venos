@@ -49,7 +49,7 @@ class {{ class }} extends Controller
      */
     public function show({{ model }} ${{ modelVariable }})
     {
-        // return view('backend.{{ modelVariable }}.show');
+        // return view('backend.{{ modelVariable }}.show', compact('{{ modelVariable }}'));
     }
 
     /**
