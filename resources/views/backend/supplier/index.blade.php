@@ -9,7 +9,8 @@ active
         'links' => [
             'home' => 'home',
             'supplier' => ''
-        ]
+        ],
+        'fontawsome' => 'fas fa-user-tie'
     ])
 @endsection
 
@@ -154,9 +155,9 @@ active
                             @forelse ($suppliers as $supplier)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $supplier->name }}</td>
-                                    <td>{{ $supplier->phone_number }}</td>
-                                    <td>{{ $supplier->email_address }}</td>
+                                    <td>{{ $supplier->name ?? "-" }}</td>
+                                    <td>{{ $supplier->phone_number ?? "-" }}</td>
+                                    <td>{{ $supplier->email_address ?? "-" }}</td>
                                     <td>{{ $supplier->created_at->diffForHumans() }}</td>
 
                                     <td>

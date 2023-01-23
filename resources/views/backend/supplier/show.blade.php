@@ -10,7 +10,8 @@ active
             'home' => 'home',
             'supplier' => 'supplier.index',
             $supplier->name => '',
-        ]
+        ],
+        'fontawsome' => 'fas fa-user-tie'
     ])
 @endsection
 
