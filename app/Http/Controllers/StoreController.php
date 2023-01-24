@@ -14,7 +14,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = Store::all();
+        $stores = Store::latest()->get();
         return view('backend.store.index', compact('stores'));
     }
 
@@ -43,7 +43,7 @@ class StoreController extends Controller
         ]);
 
         Store::create($request->except('_token'));
-        return back();
+        return back()->withsuccess('Store Added Successfully!');
     }
 
     /**
@@ -54,7 +54,7 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        // return view('backend.store.show', compact('store'));
+        return view('backend.store.show', compact('store'));
     }
 
     /**
@@ -89,6 +89,6 @@ class StoreController extends Controller
     public function destroy(Store $store)
     {
         $store->delete();
-        return back();
+        return back()->withdelete_success('Store Deleted Successfully!');
     }
 }

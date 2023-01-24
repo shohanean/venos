@@ -196,7 +196,7 @@ active
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
                     <span class="card-label fw-bolder fs-3 mb-1">
-                        store List <span class="badge bg-success">{{ $stores->count() }}</span>
+                        Store List <span class="badge bg-success">{{ $stores->count() }}</span>
                     </span>
                 </h3>
             </div>
@@ -214,10 +214,10 @@ active
                         <thead>
                             <tr class="fw-bolder text-muted">
                                 <th>SL No.</th>
-                                <th>store Name</th>
-                                <th>store Phone Number</th>
-                                <th>store Email Address</th>
-                                <th>store Added</th>
+                                <th>Store Name</th>
+                                <th>Store Phone Number</th>
+                                <th>Store Email Address</th>
+                                <th>Store Added</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
