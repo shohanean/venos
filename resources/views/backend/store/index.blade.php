@@ -96,6 +96,9 @@ active
                             <div class="input-group">
                                 <input type="file" class="form-control" name="logo">
                             </div>
+                            @error('logo')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                             <!--end::Input group-->
                         </div>
                     </div>

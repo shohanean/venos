@@ -40,9 +40,17 @@ class StoreController extends Controller
             'name' => 'required',
             'code' => 'required',
             'phone_number' => 'required',
+            'logo' => 'nullable|image',
         ]);
-
-        Store::create($request->except('_token'));
+        if ($request->hasFile('logo')) {
+            $logo = $request->file('logo')->store('store_logos');
+        }
+        else{
+            $logo = null;
+        }
+        Store::create($request->except('_token', 'logo')+[
+            'logo' => $logo
+        ]);
         return back()->withsuccess('Store Added Successfully!');
     }
 

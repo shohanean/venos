@@ -72,6 +72,7 @@ return [
     'links' => [
         public_path('db-backup') => storage_path('app/db-backup'),
         public_path('avatars') => storage_path('app/avatars'),
+        public_path('store_logos') => storage_path('app/store_logos'),
     ],
 
 ];

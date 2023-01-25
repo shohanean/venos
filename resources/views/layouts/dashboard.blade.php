@@ -109,6 +109,19 @@
     									</a>
     								</div>
                                 @endcan
+                                @can ('can manage warehouse')
+                                    <div class="menu-item">
+    									<a class="menu-link @yield('warehouse.index')" href="">
+    										<span class="menu-icon">
+                                                <i class="fas fa-warehouse"></i>
+    										</span>
+    										<span class="menu-title">
+                                                Warehouse
+                                            </span>
+                                            <span class="badge bg-info ms-1 float-end">000</span>
+    									</a>
+    								</div>
+                                @endcan
                                 @can ('can manage store')
                                     <div class="menu-item">
     									<a class="menu-link @yield('store.index')" href="{{ route('store.index') }}">

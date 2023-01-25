@@ -33,7 +33,6 @@ active
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body py-3">
-                {{ $store }}
                 <!--begin::Table container-->
                 <div class="table-responsive">
                     <!--begin::Table-->
@@ -45,28 +44,60 @@ active
                                 <td>{{ $store->name ?? "-" }}</td>
                             </tr>
                             <tr>
-                                <td><b>Store Phone Number</b></td>
-                                <td>{{ $store->phone_number ?? "-" }}</td>
+                                <td><b>Store Logo</b></td>
+                                <td>
+                                    @if ($store->logo)
+                                        <img width="200" src="{{ asset($store->logo) }}" alt="No Logo Uploaded">
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Store Code</b></td>
+                                <td>{{ $store->code ?? "-" }}</td>
                             </tr>
                             <tr>
                                 <td><b>Store Email Address</b></td>
                                 <td>{{ $store->email_address ?? "-" }}</td>
                             </tr>
                             <tr>
-                                <td><b>store Custom Field 1</b></td>
-                                <td>{{ $store->custom_field_1 ?? "-" }}</td>
+                                <td><b>Store Phone Number</b></td>
+                                <td>{{ $store->phone_number ?? "-" }}</td>
                             </tr>
                             <tr>
-                                <td><b>store Custom Field 2</b></td>
-                                <td>{{ $store->custom_field_2 ?? "-" }}</td>
+                                <td><b>Store Address</b></td>
+                                <td>
+                                    <p>{{ $store->address_line_1 ?? "-" }}</p>
+                                    <p>{{ $store->address_line_2 ?? "-" }}</p>
+                                </td>
                             </tr>
                             <tr>
-                                <td><b>store Custom Field 3</b></td>
-                                <td>{{ $store->custom_field_3 ?? "-" }}</td>
+                                <td><b>Store City</b></td>
+                                <td>{{ $store->city ?? "-" }}</td>
                             </tr>
                             <tr>
-                                <td><b>store Created At</b></td>
-                                <td>{{ $store->created_at ?? "-" }}</td>
+                                <td><b>Store Postal Code</b></td>
+                                <td>{{ $store->postal_code ?? "-" }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Store Country</b></td>
+                                <td>{{ $store->country ?? "-" }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Receipt Header</b></td>
+                                <td>{{ $store->receipt_header ?? "-" }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Receipt Footer</b></td>
+                                <td>{{ $store->receipt_footer ?? "-" }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Store Created At</b></td>
+                                <td>
+                                    {{ $store->created_at }}
+                                    <span class="badge bg-primary">{{ $store->created_at->diffForHumans() }}</span>
+                                </td>
                             </tr>
                         </tbody>
                         <!--end::Table body-->
@@ -96,10 +127,14 @@ active
             <!--end::Header-->
             <!--begin::Body-->
             <div class="card-body py-3">
-                <div class="bg-secondary m-auto" style="width: 332.60px">
+                <div class="bg-secondary m-auto" style="width: 302.36px">
                     <div class="text-center">
-                        <img class="img-fluid" src="https://sumashtech.com/_nuxt/img/SUMASHLOGO.8dd4226.png" alt="not  found">
-                        <p>{{ $store->name }}</p>
+                        @if ($store->logo)
+                            <img class="p-3 img-fluid" src="{{ asset($store->logo) }}" alt="not  found">
+                            <p>{{ $store->name }}</p>
+                        @else
+                            <h1 class="p-5">{{ $store->name }}</h1>
+                        @endif
                         <p><i class="fa fa-map"></i>
                             {{ $store->address_line_1 }}
                             <br>
@@ -110,6 +145,9 @@ active
                         <i class="fa fa-phone"></i> {{ $store->phone_number }}
                         <br>
                         <i class="fa fa-envelope"></i> {{ $store->email_address }}
+                    </div>
+                    <div class="border border-dark text-center mt-3">
+                        <p class="p-0 m-0">{{ $store->receipt_header }}</p>
                     </div>
                     <div class="p-3">
                         Date: Wed 25 Jan 2023 01:28 AM
@@ -131,7 +169,7 @@ active
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i=1;$i<10;$i++)
+                                @for ($i=1;$i<3;$i++)
                                     <tr>
                                         <th scope="row">{{ $i }}</th>
                                         <td>{{ Str::random(3) }}</td>
@@ -140,10 +178,10 @@ active
                                         <td>{{ rand(10000,99999) }}</td>
                                     </tr>
                                 @endfor
-                                <tr>
+                                <tr class="border border-dark">
                                     <td colspan="2" class="text-center"><b>Total Items</b></td>
-                                    <td><b>114</b></td>
-                                    <td><b>Total</b></td>
+                                    <td class="text-center"><b>114</b></td>
+                                    <td class="text-center"><b>Total</b></td>
                                     <td><b>4909</b></td>
                                 </tr>
                                 <tr>
@@ -164,10 +202,15 @@ active
                                 </tr>
                             </tbody>
                         </table>
-                        {{-- <h1>{{ $store->receipt_header }}</h1> --}}
+                        <div class="text-center mb-3">
+                            {!! DNS1D::getBarcodeSVG('2023010100776', 'C39',1,40,'black', true) !!}
+                        </div>
                         <div class="border border-dark text-center">
                             <p class="p-0 m-0">{{ $store->receipt_footer }}</p>
-                            <p class="p-0 m-0">Created By: Shohan Hossain Ean</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex">
+                            Developed By: Shohan, 01834833973
                             {!! DNS2D::getBarcodeHTML('Shohan', 'QRCODE',3,3) !!}
                         </div>
                     </div>
