@@ -8,7 +8,8 @@
     @includeIf('parts.toolbar', [
         'links' => [
             'home' => 'home'
-        ]
+        ],
+        'fontawsome' => 'fa fa-home'
     ])
 @endsection
 
@@ -23,7 +24,7 @@
                 <!--begin::Wrapper-->
                 <div class="d-flex flex-column mb-7">
                     <!--begin::Title-->
-                    <a href="" class="text-dark text-hover-primary fw-bolder fs-3">Summary</a>
+                    <p class="text-dark text-hover-primary fw-bolder fs-3 p-0 m-0">Summary</p>
                     <!--end::Title-->
                 </div>
                 <!--end::Wrapper-->
@@ -119,6 +120,82 @@
                             <div>
                                 <div class="fs-5 text-dark fw-bolder lh-1">{{ $subcategories }}</div>
                                 <div class="fs-7 text-gray-600 fw-bold">Subcategories</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fas fa-user-friends fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_customers() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Customers</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fas fa-user-tie fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_suppliers() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Suppliers</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fas fa-warehouse fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_warehouses() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Warehouses</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fas fa-store fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ total_stores() }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Stores</div>
                             </div>
                             <!--end::Title-->
                         </div>
