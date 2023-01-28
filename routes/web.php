@@ -2,7 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Route,Auth};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\{HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController, CustomerController, SupplierController, StoreController, WarehouseController};
+use App\Http\Controllers\{HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController, CustomerController, SupplierController, StoreController, WarehouseController, ProductController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,4 +70,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Store Routes
     Route::resource('warehouse', WarehouseController::class);
+
+    //Product Routes
+    Route::resource('product', ProductController::class);
 });
