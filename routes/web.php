@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Route,Auth};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\{HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController, CustomerController, SupplierController, StoreController, WarehouseController, ProductController};
+use App\Http\Controllers\ExpenseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,4 +74,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Product Routes
     Route::resource('product', ProductController::class);
+
+    //Expense Routes
+    Route::resource('expense', ExpenseController::class);
+    Route::post('expensecategory', [ExpenseController::class, 'expensecategory_store'])->name('expensecategory.store');
 });

@@ -87,6 +87,19 @@
                                     <div class="menu-item">
     									<a class="menu-link @yield('customer.index')" href="{{ route('customer.index') }}">
     										<span class="menu-icon">
+                                                <i class="fas fa-cubes"></i>
+    										</span>
+    										<span class="menu-title">
+                                                Product
+                                            </span>
+                                            {{-- <span class="badge bg-info ms-1 float-end">{{ total_customers() }}</span> --}}
+    									</a>
+    								</div>
+                                @endcan
+                                @can ('can manage customer')
+                                    <div class="menu-item">
+    									<a class="menu-link @yield('customer.index')" href="{{ route('customer.index') }}">
+    										<span class="menu-icon">
                                                 <i class="fas fa-user-friends"></i>
     										</span>
     										<span class="menu-title">
@@ -135,6 +148,37 @@
     									</a>
     								</div>
                                 @endcan
+                                @can ('can manage expense')
+                                    <div data-kt-menu-trigger="click" class="menu-item @yield('expense_management') menu-accordion mb-1">
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+                                                <i class="fas fa-money-bill"></i>
+                                            </span>
+                                            <span class="menu-title">Expense</span>
+                                            <span class="menu-arrow"></span>
+                                        </span>
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <div class="menu-item">
+                                                <a class="menu-link @yield('role.index')" href="{{ route('role.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <i class="fas fa-money-bill"></i>
+                                                    </span>
+                                                    <span class="menu-title">Expense</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <div class="menu-item">
+                                                <a class="menu-link @yield('expense.create')" href="{{ route('expense.create') }}">
+                                                    <span class="menu-bullet">
+                                                        <i class="fas fa-money-check"></i>
+                                                    </span>
+                                                    <span class="menu-title">Expense Categories</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endcan
                                 @canany(['can add user','can see user list','can role user','can see role list'])
                                     <div data-kt-menu-trigger="click" class="menu-item @yield('user_management') menu-accordion mb-1">
                                         <span class="menu-link">
@@ -149,7 +193,7 @@
                                             <div class="menu-item">
                                                 <a class="menu-link  @yield('user.index')" href="{{ route('user.index') }}">
                                                     <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
+                                                        <i class="fas fa-user-shield"></i>
                                                     </span>
                                                     <span class="menu-title">Users</span>
                                                 </a>
@@ -159,7 +203,7 @@
                                             <div class="menu-item">
                                                 <a class="menu-link @yield('role.index')" href="{{ route('role.index') }}">
                                                     <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
+                                                        <i class="fas fa-shield-alt"></i>
                                                     </span>
                                                     <span class="menu-title">Roles</span>
                                                 </a>
