@@ -60,7 +60,7 @@ active
                                 <h6 class="font-size-lg text-dark font-weight-bold">&nbsp;</h6>
                             </label>
                             <div class="input-group">
-                                <button type="submit" class="form-control btn btn-success">Add Warehouse</button>
+                                <button type="submit" class="form-control btn btn-success">Add Expense Category</button>
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -111,11 +111,12 @@ active
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $expense_category->name ?? "-" }}</td>
-                                    <td>{{ $expense_category->added_by ?? "-" }}</td>
-                                    <td>-</td>
-                                    {{-- <td>
+                                    <td>
+                                        <span class="badge bg-secondary text-dark">{{ $expense_category->user->name }}</span>
+                                    </td>
+                                    <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <form action="{{ route('warehouse.destroy', $warehouse->id) }}" method="POST">
+                                            <form action="{{ route('expensecategory.destroy', $expense_category->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">
@@ -123,12 +124,12 @@ active
                                                 </button>
                                             </form>
                                         </div>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="text-center">
                                     <td colspan="50">
-                                        <div class="alert alert-danger">No Category to Show</div>
+                                        <div class="alert alert-danger">No Expense Category to Show</div>
                                     </td>
                                 </tr>
                             @endforelse

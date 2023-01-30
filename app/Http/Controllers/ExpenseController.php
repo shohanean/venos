@@ -26,7 +26,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $expense_categories = Expense_category::all();
+        $expense_categories = Expense_category::with('user')->latest()->get();
         return view('backend.expense.create', compact('expense_categories'));
     }
 
@@ -91,11 +91,16 @@ class ExpenseController extends Controller
     public function expensecategory_store (Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:expense_categories,name'
+            'name' => 'required|unique:expense_categories,name|max:100'
         ]);
         Expense_category::create($request->except('_token') + [
             'added_by' => auth()->id()
         ]);
         return back()->withsuccess('Expense Category Added Successfully!');
+    }
+    public function expensecategory_destroy($id)
+    {
+        Expense_category::find($id)->delete();
+        return back()->with('delete_success', 'Expense Category Deleted Successfully!');
     }
 }

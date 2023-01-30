@@ -78,4 +78,5 @@ Route::middleware(['auth'])->group(function () {
     //Expense Routes
     Route::resource('expense', ExpenseController::class);
     Route::post('expensecategory', [ExpenseController::class, 'expensecategory_store'])->name('expensecategory.store');
+    Route::delete('expensecategory/destroy/{id}', [ExpenseController::class, 'expensecategory_destroy'])->name('expensecategory.destroy');
 });
