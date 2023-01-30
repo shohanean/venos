@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('home')
-    active
+    active border-start border-3
 @endsection
 
 @section('toolbar')

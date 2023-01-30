@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Expense;
 use App\Models\Expense_category;
+use App\Models\Warehouse;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -16,7 +18,10 @@ class ExpenseController extends Controller
     public function index()
     {
         $expenses = Expense::all();
-        return view('backend.expense.index', compact('expenses'));
+        $warehouses = Warehouse::all();
+        $stores = Store::all();
+        $expense_categories = Expense_category::all();
+        return view('backend.expense.index', compact('expenses', 'warehouses', 'stores', 'expense_categories'));
     }
 
     /**
