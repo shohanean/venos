@@ -18,9 +18,6 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        // return Expense::where([
-        //     'date' => Carbon::now()->format('Y-m-d')
-        // ])->latest()->get();
         $expenses = Expense::latest()->get();
         $warehouses = Warehouse::all();
         $stores = Store::all();

@@ -207,6 +207,82 @@
                             <!--begin::Symbol-->
                             <div class="symbol symbol-60px me-3">
                                 <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fas fa-money-bill fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ $todays_expense }}</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Today's Expense</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-database fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">Null</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Backup</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-database fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">Null</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Backup</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
+                                    <i class="fa fa-database fa-2x"></i>
+                                </div>
+                            </div>
+                            <!--end::Symbol-->
+                            <!--begin::Title-->
+                            <div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">Null</div>
+                                <div class="fs-7 text-gray-600 fw-bold">Backup</div>
+                            </div>
+                            <!--end::Title-->
+                        </div>
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col-6 col-md-3">
+                        <div class="d-flex align-items-center mb-9 me-2">
+                            <!--begin::Symbol-->
+                            <div class="symbol symbol-60px me-3">
+                                <div class="symbol-label bg-white bg-opacity-50">
                                     <i class="fa fa-database fa-2x"></i>
                                 </div>
                             </div>
