@@ -6,6 +6,7 @@ use App\Models\Expense;
 use App\Models\Expense_category;
 use App\Models\Warehouse;
 use App\Models\Store;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -43,8 +44,17 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        // Expense::create($request->except('_token'));
-        // return back();
+        Expense::insert([
+            'date' => $request->date,
+            'title' => $request->title,
+            'store_or_warehouse' => explode('#', $request->store_warehouse_id)[0],
+            'store_warehouse_id' => explode('#', $request->store_warehouse_id)[1],
+            'expense_category_id' => $request->expense_category_id,
+            'amount' => $request->amount,
+            'details' => $request->details,
+            'created_at' => Carbon::now()
+        ]);
+        return back()->with('success', 'Expense Added Successfully!');
     }
 
     /**

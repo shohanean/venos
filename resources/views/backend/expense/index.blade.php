@@ -38,7 +38,7 @@ active border-start border-3
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
                 <!--begin::Form-->
-                <form method="POST" action="{{ route('expensecategory.store') }}">
+                <form method="POST" action="{{ route('expense.store') }}">
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -73,17 +73,21 @@ active border-start border-3
                                 <h6 class="font-size-lg text-dark font-weight-bold required">Store/Warehouse Name (shohan)</h6>
                             </label>
                             <div class="input-group">
-                                <select class="form-select" name="faka1">
+                                <select class="form-select" name="store_warehouse_id">
                                     <option value="">-Select One Store/Warehouse Name-</option>
-                                    @foreach ($stores as $store)
-                                        <option value="">{{ $store->name }} (Store)</option>
-                                    @endforeach
-                                    @foreach ($warehouses as $warehouse)
-                                        <option value="">{{ $warehouse->name }} (Warehouse)</option>
-                                    @endforeach
+                                    <optgroup label="Store">
+                                        @foreach ($stores as $store)
+                                            <option value="store#{{ $store->id }}">{{ $store->name }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                    <optgroup label="Warehouse">
+                                        @foreach ($warehouses as $warehouse)
+                                            <option value="warehouse#{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+                                        @endforeach
+                                    </optgroup>
                                 </select>
                             </div>
-                            @error('name1')
+                            @error('store_warehouse_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                             <!--end::Input group-->
@@ -96,14 +100,14 @@ active border-start border-3
                                 <h6 class="font-size-lg text-dark font-weight-bold required">Expense Category Name</h6>
                             </label>
                             <div class="input-group">
-                                <select class="form-select" name="faka">
+                                <select class="form-select" name="expense_category_id">
                                     <option value="">- Select One Expense Category Name -</option>
                                     @foreach ($expense_categories as $expense_category)
-                                        <option value="">{{ $expense_category->name }}</option>
+                                        <option value="{{ $expense_category->id }}">{{ $expense_category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            @error('faka')
+                            @error('expense_category_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                             <!--end::Input group-->
@@ -160,7 +164,7 @@ active border-start border-3
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
                     <span class="card-label fw-bolder fs-3 mb-1">
-                        {{-- Expense Category List <span class="badge bg-success">{{ $expense_categories->count() }}</span> --}}
+                        Expense List <span class="badge bg-success">{{ $expenses->count() }}</span>
                     </span>
                 </h3>
             </div>
@@ -178,7 +182,7 @@ active border-start border-3
                         <thead>
                             <tr class="fw-bolder text-muted">
                                 <th>SL No.</th>
-                                <th>Expense Category Name</th>
+                                <th>Expense Name</th>
                                 <th>Added By</th>
                                 <th>Action</th>
                             </tr>
@@ -186,11 +190,11 @@ active border-start border-3
                         <!--end::Table head-->
                         <!--begin::Table body-->
                         <tbody>
-                            {{-- @forelse ($expense_categories as $expense_category)
+                            @forelse ($expenses as $expense)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $expense_category->name ?? "-" }}</td>
-                                    <td>
+                                    <td>{{ $expense }}</td>
+                                    {{-- <td>
                                         <span class="badge bg-secondary text-dark">{{ $expense_category->user->name }}</span>
                                     </td>
                                     <td>
@@ -203,15 +207,15 @@ active border-start border-3
                                                 </button>
                                             </form>
                                         </div>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @empty
                                 <tr class="text-center">
                                     <td colspan="50">
-                                        <div class="alert alert-danger">No Expense Category to Show</div>
+                                        <div class="alert alert-danger">No Expense to Show</div>
                                     </td>
                                 </tr>
-                            @endforelse --}}
+                            @endforelse
                         </tbody>
                         <!--end::Table body-->
                     </table>
