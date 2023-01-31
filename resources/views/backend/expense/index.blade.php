@@ -70,10 +70,10 @@ active border-start border-3
                         <div class="col-12 col-md-4">
                             <!--begin::Input group-->
                             <label>
-                                <h6 class="font-size-lg text-dark font-weight-bold required">Store/Warehouse Name (shohan)</h6>
+                                <h6 class="font-size-lg text-dark font-weight-bold required">Store/Warehouse Name</h6>
                             </label>
                             <div class="input-group">
-                                <select class="form-select" name="store_warehouse_id">
+                                <select class="form-select @error('store_warehouse_id') is-invalid @enderror" name="store_warehouse_id">
                                     <option value="">-Select One Store/Warehouse Name-</option>
                                     <optgroup label="Store">
                                         @foreach ($stores as $store)
@@ -100,7 +100,7 @@ active border-start border-3
                                 <h6 class="font-size-lg text-dark font-weight-bold required">Expense Category Name</h6>
                             </label>
                             <div class="input-group">
-                                <select class="form-select" name="expense_category_id">
+                                <select class="form-select @error('expense_category_id') is-invalid @enderror" name="expense_category_id">
                                     <option value="">- Select One Expense Category Name -</option>
                                     @foreach ($expense_categories as $expense_category)
                                         <option value="{{ $expense_category->id }}">{{ $expense_category->name }}</option>
@@ -118,7 +118,7 @@ active border-start border-3
                                 <h6 class="font-size-lg text-dark font-weight-bold required">Expense Amount</h6>
                             </label>
                             <div class="input-group">
-                                <input type="number" class="form-control @error('amount') is-invalid @enderror" name="amount" value="{{ old('amount') }}">
+                                <input type="number" step="0.01" class="form-control @error('amount') is-invalid @enderror" name="amount" value="{{ old('amount') }}">
                             </div>
                             @error('amount')
                                 <span class="text-danger">{{ $message }}</span>
@@ -182,8 +182,13 @@ active border-start border-3
                         <thead>
                             <tr class="fw-bolder text-muted">
                                 <th>SL No.</th>
-                                <th>Expense Name</th>
                                 <th>Added By</th>
+                                <th>Expense Date</th>
+                                <th>Expense Title</th>
+                                <th>Where</th>
+                                <th>Location</th>
+                                <th>Expense Amount</th>
+                                <th>Expense Details</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -193,13 +198,28 @@ active border-start border-3
                             @forelse ($expenses as $expense)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $expense }}</td>
-                                    {{-- <td>
-                                        <span class="badge bg-secondary text-dark">{{ $expense_category->user->name }}</span>
+                                    <td>
+                                        <i class="far fa-id-badge"></i>
+                                        {{ $expense->user->name }}
+                                    </td>
+                                    <td>{{ $expense->date }}</td>
+                                    <td>{{ $expense->title }}</td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ $expense->store_or_warehouse }}</span>
                                     </td>
                                     <td>
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        @if ($expense->store_or_warehouse == 'store')
+                                            <span class="badge bg-secondary text-dark">{{ $expense->store->name }}</span>
+                                        @else
+                                            <span class="badge bg-secondary text-dark">{{ $expense->warehouse->name }}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $expense->amount }}</td>
+                                    <td>{{ $expense->details ?? '-' }}</td>
+                                    <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <form action="{{ route('expensecategory.destroy', $expense_category->id) }}" method="POST">
+                                            <form action="{{ route('expense.destroy', $expense->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">
@@ -207,7 +227,7 @@ active border-start border-3
                                                 </button>
                                             </form>
                                         </div>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="text-center">

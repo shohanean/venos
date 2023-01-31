@@ -5,7 +5,7 @@ show here
 @endsection
 
 @section('expense.create')
-active
+active border-start border-3
 @endsection
 
 @section('toolbar')

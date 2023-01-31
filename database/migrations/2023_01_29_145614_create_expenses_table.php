@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('expense_category_id');
             $table->float('amount', 8,2);
             $table->longText('details')->nullable();
+            $table->integer('added_by');
             $table->timestamps();
             $table->softDeletes();
         });

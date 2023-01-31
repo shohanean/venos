@@ -18,7 +18,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::all();
+        // return Expense::where([
+        //     'date' => Carbon::now()->format('Y-m-d')
+        // ])->latest()->get();
+        $expenses = Expense::latest()->get();
         $warehouses = Warehouse::all();
         $stores = Store::all();
         $expense_categories = Expense_category::all();
@@ -44,6 +47,10 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            '*' => 'required',
+            'details' => 'nullable'
+        ]);
         Expense::insert([
             'date' => $request->date,
             'title' => $request->title,
@@ -52,6 +59,7 @@ class ExpenseController extends Controller
             'expense_category_id' => $request->expense_category_id,
             'amount' => $request->amount,
             'details' => $request->details,
+            'added_by' => auth()->id(),
             'created_at' => Carbon::now()
         ]);
         return back()->with('success', 'Expense Added Successfully!');
@@ -99,8 +107,8 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        // $expense->delete();
-        // return back();
+        $expense->delete();
+        return back()->with('delete_success', 'Expense Deleted Successfully!');
     }
 
     public function expensecategory_store (Request $request)
