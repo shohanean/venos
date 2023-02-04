@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use App\Models\Store;
 use App\Models\User;
 use App\Models\Warehouse;
+use App\Models\Setting;
 
 function profile_compleation($id){
     $percentage = 10; // if anyone opens an account get 10 points
@@ -54,5 +55,8 @@ function total_stores(){
 }
 function total_warehouses(){
     return Warehouse::count();
+}
+function setting($title){
+    return Setting::where('title', $title)->first()->value;
 }
 ?>

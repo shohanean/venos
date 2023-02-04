@@ -213,7 +213,7 @@
                             <!--end::Symbol-->
                             <!--begin::Title-->
                             <div>
-                                <div class="fs-5 text-dark fw-bolder lh-1">{{ $todays_expense }}</div>
+                                <div class="fs-5 text-dark fw-bolder lh-1">{{ App\Models\Currency::where('id', setting('currency'))->first()->symbol }}{{ $todays_expense }}</div>
                                 <div class="fs-7 text-gray-600 fw-bold">Today's Expense</div>
                             </div>
                             <!--end::Title-->
