@@ -3,7 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Route,Auth};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\{HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController, CustomerController, SupplierController, StoreController, WarehouseController, ProductController};
-use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\{ExpenseController, BrandController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,4 +79,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('expense', ExpenseController::class);
     Route::post('expensecategory', [ExpenseController::class, 'expensecategory_store'])->name('expensecategory.store');
     Route::delete('expensecategory/destroy/{id}', [ExpenseController::class, 'expensecategory_destroy'])->name('expensecategory.destroy');
+
+    //Brand Routes
+    Route::resource('brand', BrandController::class);
 });
