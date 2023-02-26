@@ -14,8 +14,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        // $Brands = Brand::all();
-        // return view('backend.brand.index', compact('Brands'));
+        $brands = Brand::latest()->get();
+        return view('backend.brand.index', compact('brands'));
     }
 
     /**
@@ -25,7 +25,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('backend.brand.create');
+        // return view('backend.brand.create');
     }
 
     /**
@@ -36,8 +36,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        // Brand::create($request->except('_token'));
-        // return back();
+        $request->validate([
+            'name' => 'required|unique:brands,name'
+        ]);
+        Brand::create($request->except('_token') + [
+            'user_id' => auth()->id()
+        ]);
+        return back()->with('success', 'Brand Added Successfully!');
     }
 
     /**
@@ -82,7 +87,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        // $brand->delete();
-        // return back();
+        $brand->delete();
+        return back()->with('delete_success', 'Brand Deleted Successfully!');
     }
 }
