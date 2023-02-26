@@ -83,7 +83,7 @@
     									</a>
     								</div>
                                 @endcan
-                                <div data-kt-menu-trigger="click" class="menu-item @yield('expense_management') menu-accordion mb-1">
+                                <div data-kt-menu-trigger="click" class="menu-item @yield('product_management') menu-accordion mb-1">
                                     <span class="menu-link">
                                         <span class="menu-icon">
                                             <i class="fas fa-cubes"></i>

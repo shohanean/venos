@@ -1,7 +1,11 @@
 @extends('layouts.dashboard')
 
+@section('product_management')
+show here
+@endsection
+
 @section('brand.index')
-active
+active border-start border-3
 @endsection
 
 @section('toolbar')
