@@ -100,6 +100,7 @@ active border-start border-3
                             <tr class="fw-bolder text-muted">
                                 <th>SL No.</th>
                                 <th>Brand Name</th>
+                                <th>QR Code</th>
                                 <th>Remarks</th>
                                 <th>Action</th>
                             </tr>
@@ -110,7 +111,12 @@ active border-start border-3
                             @forelse ($brands as $brand)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $brand->name ?? "-" }}</td>
+                                    <td>
+                                        {{ $brand->name ?? "-" }}
+                                    </td>
+                                    <td>
+                                        {!! DNS2D::getBarcodeHTML($brand->name, 'QRCODE',3,3) !!}
+                                    </td>
                                     <td>{{ $brand->created_at->diffForHumans() }}</td>
 
                                     <td>
