@@ -99,9 +99,11 @@ active border-start border-3
                         <thead>
                             <tr class="fw-bolder text-muted">
                                 <th>SL No.</th>
+                                <th>Added By</th>
                                 <th>Brand Name</th>
                                 <th>QR Code</th>
-                                <th>Remarks</th>
+                                <th>Product Count</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -112,13 +114,18 @@ active border-start border-3
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>
+                                        <img class="rounded-circle" src="{{ asset($brand->user->avatar) }}" alt="not found" width="50">
+                                        <br>
+                                        {{ $brand->user->name }}
+                                    </td>
+                                    <td>
                                         {{ $brand->name ?? "-" }}
                                     </td>
                                     <td>
                                         {!! DNS2D::getBarcodeHTML($brand->name, 'QRCODE',3,3) !!}
                                     </td>
+                                    <td>###</td>
                                     <td>{{ $brand->created_at->diffForHumans() }}</td>
-
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <form action="{{ route('brand.destroy', $brand->id) }}" method="POST">

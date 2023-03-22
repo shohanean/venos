@@ -14,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::latest()->get();
+        $brands = Brand::with('user')->latest()->get();
         return view('backend.brand.index', compact('brands'));
     }
 
