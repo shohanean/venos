@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="menu-sub menu-sub-accordion">
                                         <div class="menu-item">
-                                            <a class="menu-link @yield('expense.create')" href="{{ route('expense.create') }}">
+                                            <a class="menu-link @yield('unit.index')" href="{{ route('unit.index') }}">
                                                 <span class="menu-bullet">
                                                     <i class="fas fa-quote-right"></i>
                                                 </span>
