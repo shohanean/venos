@@ -18,7 +18,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::latest()->get();
+        $expenses = Expense::with(['warehouse', 'store', 'user', 'expense_category'])->latest()->get();
         $warehouses = Warehouse::all();
         $stores = Store::all();
         $expense_categories = Expense_category::all();
@@ -32,7 +32,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $expense_categories = Expense_category::with('user')->latest()->get();
+        $expense_categories = Expense_category::with(['user', 'expense'])->latest()->get();
         return view('backend.expense.create', compact('expense_categories'));
     }
 
@@ -108,7 +108,7 @@ class ExpenseController extends Controller
         return back()->with('delete_success', 'Expense Deleted Successfully!');
     }
 
-    public function expensecategory_store (Request $request)
+    public function expensecategory_store(Request $request)
     {
         $request->validate([
             'name' => 'required|unique:expense_categories,name|max:100'

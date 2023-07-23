@@ -10,7 +10,12 @@ class Expense_category extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    function user(){
+    function user()
+    {
         return $this->hasOne(User::class, 'id', 'added_by');
+    }
+    function expense()
+    {
+        return $this->hasMany(Expense::class, 'expense_category_id', 'id');
     }
 }

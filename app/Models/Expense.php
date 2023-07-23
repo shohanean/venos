@@ -19,4 +19,7 @@ class Expense extends Model
     function warehouse(){
         return $this->hasOne(Warehouse::class, 'id', 'store_warehouse_id');
     }
+    function expense_category(){
+        return $this->hasOne(Expense_category::class, 'id', 'expense_category_id');
+    }
 }
