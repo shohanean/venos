@@ -9,6 +9,8 @@ use App\Models\Store;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnSelf;
+
 class ExpenseController extends Controller
 {
     /**
@@ -120,7 +122,7 @@ class ExpenseController extends Controller
     }
     public function expensecategory_destroy($id)
     {
-        Expense_category::find($id)->delete();
+        Expense_category::find($id)->forceDelete();
         return back()->with('delete_success', 'Expense Category Deleted Successfully!');
     }
 }

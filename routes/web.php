@@ -1,19 +1,10 @@
 <?php
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Route,Auth};
+use Illuminate\Support\Facades\{Route, Auth};
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\{HomeController, SocialController, ProfileController, BackupController, RoleController, UserController, CategoryController, CustomerController, SupplierController, StoreController, WarehouseController, ProductController};
-use App\Http\Controllers\{ExpenseController, BrandController, UnitController};
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\{ExpenseController, BrandController, UnitController, MiscController};
 
 Route::get('/', function () {
     return view('index');
@@ -85,4 +76,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Unit Routes
     Route::resource('unit', UnitController::class);
+
+    //Miscellaneous Routes
+    Route::get('currencies', [MiscController::class, 'currencies'])->name('currencies.index');
+    Route::post('currencies', [MiscController::class, 'currencies_post'])->name('currencies.store');
 });
