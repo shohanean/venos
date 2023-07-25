@@ -82,4 +82,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('currencies', [MiscController::class, 'currencies_post'])->name('currencies.store');
 
     Route::get('settings', [MiscController::class, 'settings'])->name('settings.index');
+    Route::put('settings', [MiscController::class, 'settings_update'])->name('settings.update');
 });

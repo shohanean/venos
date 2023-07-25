@@ -16,10 +16,19 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('settings')->insert([
-            'title' => 'currency',
-            'value' => DB::table('currencies')->where('code', 'BDT')->first()->id,
-            'created_at' => Carbon::now()
-        ]);
+        DB::table('settings')->insert(
+            [
+                [
+                    'title' => 'currency',
+                    'value' => DB::table('currencies')->where('code', 'BDT')->first()->id,
+                    'created_at' => Carbon::now()
+                ],
+                [
+                    'title' => 'date_format',
+                    'value' => 'd-m-Y',
+                    'created_at' => Carbon::now()
+                ]
+            ]
+        );
     }
 }

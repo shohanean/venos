@@ -25,6 +25,7 @@
                     <div class="card-header border-0">
                         <h3 class="card-title fw-bolder text-dark">
                             Change Settings
+                            <span class="badge bg-primary">Last Changed: TIME HERE</span>
                         </h3>
                     </div>
                     <!--end::Header-->
@@ -34,8 +35,9 @@
                             <div class="alert alert-success">{{ session('success') }}</div>
                         @endif
                         <!--begin::Form-->
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('settings.update') }}" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <!--begin::Input group-->
@@ -43,9 +45,12 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Currency</h6>
                                     </label>
                                     <div class="input-group">
-                                        <select class="form-select" name="">
+                                        <select class="form-select" name="currency">
                                             @foreach ($currencies as $currency)
-                                                <option value="{{ $currency->id }}" {{ (setting('currency') == $currency->id) ? 'selected':'' }}>{{ $currency->name." - ".$currency->code."[".$currency->symbol."]" }}</option>
+                                                <option value="{{ $currency->id }}"
+                                                    {{ setting('currency') == $currency->id ? 'selected' : '' }}>
+                                                    {{ $currency->name . ' - ' . $currency->code . '[' . $currency->symbol . ']' }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -54,13 +59,38 @@
                                 <div class="col-12 col-md-4">
                                     <!--begin::Input group-->
                                     <label>
-                                        <h6 class="font-size-lg text-dark font-weight-bold required">Currency</h6>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Date Format</h6>
                                     </label>
                                     <div class="input-group">
-                                        <select class="form-select" name="">
-                                            @foreach ($currencies as $currency)
-                                                <option value="{{ $currency->id }}" {{ (setting('currency') == $currency->id) ? 'selected':'' }}>{{ $currency->name." - ".$currency->code."[".$currency->symbol."]" }}</option>
-                                            @endforeach
+                                        <select class="form-select" name="date_format">
+                                            <optgroup label="- Seperator">
+                                                <option value="d-m-Y">{{ \Carbon\Carbon::now()->format('d-m-Y') }} (DD-MM-YYYY)
+                                                </option>
+                                                <option value="m-d-Y">{{ \Carbon\Carbon::now()->format('m-d-Y') }} (MM-DD-YYYY)
+                                                </option>
+                                                <option value="Y-m-d">{{ \Carbon\Carbon::now()->format('Y-m-d') }} (YYYY-MM-DD)
+                                                </option>
+                                            </optgroup>
+                                            <optgroup label="/ Seperator">
+                                                <option value="d/m/Y">{{ \Carbon\Carbon::now()->format('d/m/Y') }} (DD/MM/YYYY)
+                                                </option>
+                                                <option value="m/d/Y">{{ \Carbon\Carbon::now()->format('m/d/Y') }} (MM/DD/YYYY)
+                                                </option>
+                                                <option value="Y/m/d">{{ \Carbon\Carbon::now()->format('Y/m/d') }}
+                                                    (YYYY/MM/DD)
+                                                </option>
+                                            </optgroup>
+                                            <optgroup label=". Seperator">
+                                                <option value="d.m.Y">{{ \Carbon\Carbon::now()->format('d.m.Y') }}
+                                                    (DD.MM.YYYY)
+                                                </option>
+                                                <option value="m.d.Y">{{ \Carbon\Carbon::now()->format('m.d.Y') }}
+                                                    (MM.DD.YYYY)
+                                                </option>
+                                                <option value="Y.m.d">{{ \Carbon\Carbon::now()->format('Y.m.d') }}
+                                                    (YYYY.MM.DD)
+                                                </option>
+                                            </optgroup>
                                         </select>
                                     </div>
                                     <!--end::Input group-->
@@ -71,8 +101,7 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold">settings Email Address</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="email" class="form-control" name="email_address"
-                                            value="{{ old('email_address') }}">
+                                        <input type="text" class="form-control" name="" value="">
                                     </div>
                                     <!--end::Input group-->
                                 </div>
@@ -84,7 +113,7 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold">Receipt Header</h6>
                                     </label>
                                     <div class="input-group">
-                                        <textarea name="receipt_header" class="form-control" rows="2">{{ old('receipt_header') }}</textarea>
+                                        <textarea name="" class="form-control" rows="2">{{ old('receipt_header') }}</textarea>
                                     </div>
                                     <!--end::Input group-->
                                 </div>
@@ -94,7 +123,7 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold">Receipt Footer</h6>
                                     </label>
                                     <div class="input-group">
-                                        <textarea name="receipt_footer" class="form-control" rows="2">{{ old('receipt_footer') }}</textarea>
+                                        <textarea name="" class="form-control" rows="2">{{ old('receipt_footer') }}</textarea>
                                     </div>
                                     <!--end::Input group-->
                                 </div>

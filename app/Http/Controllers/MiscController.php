@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class MiscController extends Controller
@@ -28,5 +29,14 @@ class MiscController extends Controller
         return view('backend.misc.settings', [
             'currencies' => Currency::all()
         ]);
+    }
+    public function settings_update(Request $request)
+    {
+        foreach ($request->except(['_token', '_method']) as $title => $value) {
+            Setting::where('title', $title)->update([
+                'value' => $value
+            ]);
+        }
+        return back()->with('success', 'Settings Changed Successfully!');
     }
 }
