@@ -23,4 +23,10 @@ class MiscController extends Controller
         Currency::create($request->except('_token'));
         return back()->with('success', 'Currency added successfully!');
     }
+    public function settings()
+    {
+        return view('backend.misc.settings', [
+            'currencies' => Currency::all()
+        ]);
+    }
 }

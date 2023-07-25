@@ -317,7 +317,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="#">
+                                <a class="menu-link @yield('settings.index')" href="{{ route('settings.index') }}">
                                     <span class="menu-icon">
                                         <i class="fa fa-cog"></i>
                                     </span>

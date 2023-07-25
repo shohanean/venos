@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('backup.index')
-active
+    active border-start border-3
 @endsection
 
 @section('toolbar')

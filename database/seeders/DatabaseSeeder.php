@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Timezone;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             CustomerSeeder::class,
             CurrencySeeder::class,
+            TimezoneSeeder::class,
             SettingSeeder::class,
         ]);
     }

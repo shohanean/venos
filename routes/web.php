@@ -80,4 +80,6 @@ Route::middleware(['auth'])->group(function () {
     //Miscellaneous Routes
     Route::get('currencies', [MiscController::class, 'currencies'])->name('currencies.index');
     Route::post('currencies', [MiscController::class, 'currencies_post'])->name('currencies.store');
+
+    Route::get('settings', [MiscController::class, 'settings'])->name('settings.index');
 });

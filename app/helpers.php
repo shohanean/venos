@@ -57,6 +57,9 @@ function total_warehouses(){
     return Warehouse::count();
 }
 function setting($title){
-    return Setting::where('title', $title)->first()->value;
+    if(Setting::where('title', $title)->exists()){
+        return Setting::where('title', $title)->first()->value;
+    }else{
+        return "Wrong Settings";
+    }
 }
-?>
