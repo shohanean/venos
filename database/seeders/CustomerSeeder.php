@@ -16,6 +16,9 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
+        if (DB::table('customers')->count() > 0) {
+            return;
+        }
         DB::table('customers')->insert([
             'name' => 'Walk in Customer',
             'phone_number' => '01700000000',

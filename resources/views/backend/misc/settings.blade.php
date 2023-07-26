@@ -22,10 +22,13 @@
                 <!--begin::List Widget 3-->
                 <div class="card card-xl-stretch mb-xl-8">
                     <!--begin::Header-->
-                    <div class="card-header border-0">
-                        <h3 class="card-title fw-bolder text-dark">
-                            Change Settings
-                            <span class="badge bg-primary">Last Changed: TIME HERE</span>
+                    <div class="card-header border-0 d-block py-5">
+                        <h3 class="card-title fw-bolder text-dark d-block">
+                            <span>Change Settings</span>
+                            @if (setting_last_changed())
+                                <span class="badge bg-primary float-end">Last Changed:
+                                    {{ setting_last_changed()->diffForHumans() }}</span>
+                            @endif
                         </h3>
                     </div>
                     <!--end::Header-->
@@ -39,6 +42,41 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Company Name</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="company_name"
+                                            value="{{ setting('company_name') }}">
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Company Phone</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="company_phone"
+                                            value="{{ setting('company_phone') }}">
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Default Email Address</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" name="default_email_address"
+                                            value="{{ setting('default_email_address') }}">
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                            </div>
+                            <div class="row mt-3">
                                 <div class="col-12 col-md-4">
                                     <!--begin::Input group-->
                                     <label>
@@ -63,34 +101,12 @@
                                     </label>
                                     <div class="input-group">
                                         <select class="form-select" name="date_format">
-                                            <optgroup label="- Seperator">
-                                                <option value="d-m-Y">{{ \Carbon\Carbon::now()->format('d-m-Y') }} (DD-MM-YYYY)
+                                            @foreach ($date_formats as $date_format)
+                                                <option {{ setting('date_format') == $date_format->pattern ? 'selected' : '' }}
+                                                    value="{{ $date_format->pattern }}">
+                                                    {{ ($date_format->pattern == 'diffForHumans') ? '25 minutes ago' : \Carbon\Carbon::now()->format($date_format->pattern) }}
                                                 </option>
-                                                <option value="m-d-Y">{{ \Carbon\Carbon::now()->format('m-d-Y') }} (MM-DD-YYYY)
-                                                </option>
-                                                <option value="Y-m-d">{{ \Carbon\Carbon::now()->format('Y-m-d') }} (YYYY-MM-DD)
-                                                </option>
-                                            </optgroup>
-                                            <optgroup label="/ Seperator">
-                                                <option value="d/m/Y">{{ \Carbon\Carbon::now()->format('d/m/Y') }} (DD/MM/YYYY)
-                                                </option>
-                                                <option value="m/d/Y">{{ \Carbon\Carbon::now()->format('m/d/Y') }} (MM/DD/YYYY)
-                                                </option>
-                                                <option value="Y/m/d">{{ \Carbon\Carbon::now()->format('Y/m/d') }}
-                                                    (YYYY/MM/DD)
-                                                </option>
-                                            </optgroup>
-                                            <optgroup label=". Seperator">
-                                                <option value="d.m.Y">{{ \Carbon\Carbon::now()->format('d.m.Y') }}
-                                                    (DD.MM.YYYY)
-                                                </option>
-                                                <option value="m.d.Y">{{ \Carbon\Carbon::now()->format('m.d.Y') }}
-                                                    (MM.DD.YYYY)
-                                                </option>
-                                                <option value="Y.m.d">{{ \Carbon\Carbon::now()->format('Y.m.d') }}
-                                                    (YYYY.MM.DD)
-                                                </option>
-                                            </optgroup>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <!--end::Input group-->
@@ -98,10 +114,15 @@
                                 <div class="col-12 col-md-4">
                                     <!--begin::Input group-->
                                     <label>
-                                        <h6 class="font-size-lg text-dark font-weight-bold">settings Email Address</h6>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Time Format</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="" value="">
+                                        <select class="form-select" name="time_format">
+                                            <option {{ setting('time_format') == 'h' ? 'selected' : '' }} value="h">12
+                                                Hour Clock</option>
+                                            <option {{ setting('time_format') == 'H' ? 'selected' : '' }} value="H">24
+                                                Hour Clock</option>
+                                        </select>
                                     </div>
                                     <!--end::Input group-->
                                 </div>

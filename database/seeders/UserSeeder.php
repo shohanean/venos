@@ -17,6 +17,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        if (DB::table('users')->count() > 0) {
+            return;
+        }
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@admin.com',

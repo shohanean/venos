@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             CustomerSeeder::class,
             CurrencySeeder::class,
             TimezoneSeeder::class,
+            DateFormatSeeder::class,
+            CountrySeeder::class,
+            CityOneSeeder::class,
             SettingSeeder::class,
         ]);
     }

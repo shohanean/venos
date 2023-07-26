@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
+use App\Models\Date_format;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class MiscController extends Controller
     public function settings()
     {
         return view('backend.misc.settings', [
-            'currencies' => Currency::all()
+            'date_formats' => Date_format::all(),
+            'currencies' => Currency::all(),
         ]);
     }
     public function settings_update(Request $request)
