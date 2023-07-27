@@ -31,6 +31,15 @@ class DatabaseSeeder extends Seeder
             DateFormatSeeder::class,
             CountrySeeder::class,
             CityOneSeeder::class,
+            CityTwoSeeder::class,
+            CityThreeSeeder::class,
+            CityFourSeeder::class,
+            CityFiveSeeder::class,
+            CitySixSeeder::class,
+            CitySevenSeeder::class,
+            CityEightSeeder::class,
+            CityNineSeeder::class,
+            CityTenSeeder::class,
             SettingSeeder::class,
         ]);
     }
