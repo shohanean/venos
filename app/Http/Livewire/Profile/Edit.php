@@ -7,6 +7,7 @@ use App\Models\Log;
 use App\Models\Profile;
 use App\Models\Country;
 use App\Models\City;
+use App\Models\Timezone;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
@@ -30,6 +31,7 @@ class Edit extends Component
 
     public $phone_number;
     public $city_id;
+    public $timezone;
     public $address;
     public $fb_link;
     public $ig_link;
@@ -39,6 +41,7 @@ class Edit extends Component
     {
         $this->random_code = rand(11111, 99999);
         $this->avatar_link = auth()->user()->avatar;
+        $this->timezone = auth()->user()->timezone;
         $this->name = auth()->user()->name;
         if (Profile::where('user_id', auth()->id())->exists()) {
             $profile_info = Profile::where('user_id', auth()->id())->first();
@@ -86,7 +89,8 @@ class Edit extends Component
             ]);
         }
         User::find(auth()->id())->update([
-            'name' => $this->name
+            'name' => $this->name,
+            'timezone' => $this->timezone,
         ]);
         Profile::updateOrCreate(
             [
@@ -131,7 +135,8 @@ class Edit extends Component
     public function render()
     {
         return view('livewire.profile.edit', [
-            'countries' => Country::all()
+            'countries' => Country::all(),
+            'timezones' => Timezone::all(),
         ]);
     }
 }

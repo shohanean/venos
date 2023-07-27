@@ -81,7 +81,7 @@ function v_date_time($datetime = "")
 {
     if ($datetime) {
         if(setting('date_format') == 'diffForHumans'){
-            return Carbon::parse($datetime)->diffForHumans();
+            return Carbon::parse($datetime)->setTimezone(auth()->user()->timezone)->diffForHumans();
         }else{
             return Carbon::parse($datetime)->setTimezone(auth()->user()->timezone)->format(setting('date_format') . ' ' . setting('time_format') . ':i:s A');
         }

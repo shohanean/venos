@@ -15,5 +15,4 @@
 
 @section('content')
     @livewire('profile.index')
-    {{-- <livewire:profile.index /> --}}
 @endsection
