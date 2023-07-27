@@ -102,6 +102,11 @@ class Edit extends Component
                 'li_link' => $this->li_link,
             ],
         );
+        Log::create([
+            'user_id' => auth()->id(),
+            'type' => "success",
+            'details' => "You updated your profile"
+        ]);
         session()->flash('success', 'Profile successfully updated.');
     }
     public function checker()

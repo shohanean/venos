@@ -1,23 +1,22 @@
 @extends('layouts.dashboard')
 
 @section('user_management')
-here show
+    here show
 @endsection
 
 @section('user.index')
-active
+    active border-start border-3
 @endsection
 
 @section('toolbar')
     @includeIf('parts.toolbar', [
         'links' => [
             'home' => 'home',
-            'users' => 'user.index'
-        ]
+            'users' => 'user.index',
+        ],
     ])
 @endsection
 
 @section('content')
     @livewire('adduser')
 @endsection
-
