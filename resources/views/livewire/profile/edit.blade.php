@@ -102,10 +102,7 @@
                                     <option value="">-Select One Country-</option>
                                 @endif
                                 @foreach ($countries as $country)
-                                @if ($country->code == "bd")
-                                    <option {{ ($country->code == $country_id) ? 'selected':'' }} value="{{ $country->code }}">{{ $country->name }}</option>
-                                    @break
-                                @endif
+                                    <option {{ ($country->id == $country_id) ? 'selected':'' }} value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                             <!--end::Input-->

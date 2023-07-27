@@ -5,11 +5,11 @@ namespace App\Http\Livewire\Profile;
 use App\Models\User;
 use App\Models\Log;
 use App\Models\Profile;
+use App\Models\Country;
+use App\Models\City;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
-use Khsing\World\World;
-use Khsing\World\Models\Country;
 use Illuminate\Support\Facades\Storage;
 
 class Edit extends Component
@@ -51,16 +51,13 @@ class Edit extends Component
             $this->li_link = $profile_info->li_link;
         }
         if ($this->country_id) {
-            $this->cities = Country::getByCode($this->country_id)->children();
+            $this->cities = City::where('country_id', $this->country_id)->get();
         }
     }
     public function updatedCountryId()
     {
-        // if you want to get divisions list then active below code
-        // $this->cities = Country::getByCode($this->country_id)->divisions()->get();
-
         if ($this->country_id != "") {
-            $this->cities = Country::getByCode($this->country_id)->children();
+            $this->cities = City::where('country_id', $this->country_id)->get();
         } else {
             $this->cities = [];
         }
@@ -129,7 +126,7 @@ class Edit extends Component
     public function render()
     {
         return view('livewire.profile.edit', [
-            'countries' => World::Countries()
+            'countries' => Country::all()
         ]);
     }
 }
