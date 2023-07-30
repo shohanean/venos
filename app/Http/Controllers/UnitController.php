@@ -14,7 +14,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = Unit::all();
+        $units = Unit::latest()->get();
         return view('backend.unit.index', compact('units'));
     }
 
@@ -36,8 +36,13 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        // Unit::create($request->except('_token'));
-        // return back();
+        $request->validate([
+            'name' => 'required|unique:units,name'
+        ]);
+        $unit = new Unit;
+        $unit->name = $request->name;
+        $unit->save();
+        return back()->with('success', 'Unit Added Successfully!');
     }
 
     /**
