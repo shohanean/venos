@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Timezone;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +20,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        \App\Models\Unit::create([
+            'name' => 'Piece'
+        ]);
 
         $this->call([
             UserSeeder::class,
@@ -41,6 +44,11 @@ class DatabaseSeeder extends Seeder
             CityNineSeeder::class,
             CityTenSeeder::class,
             SettingSeeder::class,
+        ]);
+        
+        \App\Models\Brand::create([
+            'user_id' => 1,
+            'name' => 'Others'
         ]);
     }
 }

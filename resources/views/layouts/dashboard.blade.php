@@ -114,7 +114,7 @@
                                 </span>
                                 <div class="menu-sub menu-sub-accordion">
                                     <div class="menu-item">
-                                        <a class="menu-link @yield('expense.index')" href="{{ route('expense.index') }}">
+                                        <a class="menu-link @yield('product.index')" href="{{ route('product.index') }}">
                                             <span class="menu-bullet">
                                                 <i class="fas fa-cubes"></i>
                                             </span>
