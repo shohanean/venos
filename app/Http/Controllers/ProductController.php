@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Product, Brand, Category};
+use App\Models\{Product, Brand, Category, Unit};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,9 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
-        $categories = Category::all();
-        return view('backend.product.index', compact('brands', 'categories'));
+        $products = Product::all();
+        return view('backend.product.index', compact('products'));
     }
 
     /**
@@ -27,7 +26,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // return view('backend.product.create');
+        $brands = Brand::all();
+        $categories = Category::all();
+        $units = Unit::all();
+        return view('backend.product.create', compact('brands', 'categories', 'units'));
     }
 
     /**
@@ -44,6 +46,12 @@ class ProductController extends Controller
             'brand_id' => 'required',
             'category_id' => 'required',
             'subcategory_id' => 'required',
+            'cost' => 'required',
+            'price' => 'required',
+            'unit_id' => 'required',
+            'stock_alert' => 'required',
+            'tax_type' => 'required',
+            'order_tax' => 'required',
         ]);
         return $request;
     }
