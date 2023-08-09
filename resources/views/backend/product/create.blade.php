@@ -220,12 +220,82 @@
                                             <input type="text" class="form-control @error('order_tax') is-invalid @enderror"
                                                 name="order_tax" value="{{ old('order_tax') }}">
                                         @else
-                                        <input type="text" class="form-control @error('order_tax') is-invalid @enderror"
-                                            name="order_tax" value="0">
+                                            <input type="text"
+                                                class="form-control @error('order_tax') is-invalid @enderror"
+                                                name="order_tax" value="0">
                                         @endif
                                         <span class="input-group-text">%</span>
                                     </div>
                                     @error('order_tax')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <!--end::Input group-->
+                                </div>
+                            </div>
+                            <hr class="py-1">
+                            <div class="row mt-3 border p-5">
+                                <div class="col-12 col-md-4">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Warehouse</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="form-select @error('warehouse_id') is-invalid @enderror" name="warehouse_id">
+                                            @foreach ($warehouses as $warehouse)
+                                                <option {{ $warehouse->id == old('warehouse_id') ? 'selected' : '' }}
+                                                    value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('warehouse_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Supplier</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control @error('stock_alert') is-invalid @enderror"
+                                            name="stock_alert" value="{{ old('stock_alert') }}">
+                                    </div>
+                                    @error('stock_alert')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Add Product Quantity</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control @error('order_tax') is-invalid @enderror"
+                                            name="order_tax" value="{{ old('order_tax') }}">
+                                    </div>
+                                    @error('order_tax')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Status</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="form-select @error('tax_type') is-invalid @enderror" name="tax_type">
+                                            <option {{ old('tax_type') == 'exclusive' ? 'selected' : '' }} value="exclusive">
+                                                Received</option>
+                                            <option {{ old('tax_type') == 'inclusive' ? 'selected' : '' }} value="inclusive">
+                                                Pending</option>
+                                            <option {{ old('tax_type') == 'inclusive' ? 'selected' : '' }} value="inclusive">
+                                                Ordered</option>
+                                        </select>
+                                    </div>
+                                    @error('tax_type')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     <!--end::Input group-->

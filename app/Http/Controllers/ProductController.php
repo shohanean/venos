@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Product, Brand, Category, Unit};
+use App\Models\{Product, Brand, Category, Unit, Warehouse};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -29,7 +29,8 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $units = Unit::all();
-        return view('backend.product.create', compact('brands', 'categories', 'units'));
+        $warehouses = Warehouse::all();
+        return view('backend.product.create', compact('brands', 'categories', 'units', 'warehouses'));
     }
 
     /**
@@ -49,9 +50,9 @@ class ProductController extends Controller
             'cost' => 'required',
             'price' => 'required',
             'unit_id' => 'required',
-            'stock_alert' => 'required',
+            'stock_alert' => 'required|numeric|min:0',
             'tax_type' => 'required',
-            'order_tax' => 'required',
+            'order_tax' => 'required|numeric|min:0',
         ]);
         return $request;
     }
