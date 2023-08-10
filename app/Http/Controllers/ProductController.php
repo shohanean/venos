@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Product, Brand, Category, Unit, Warehouse};
+use App\Models\{Product, Brand, Category, Supplier, Unit, Warehouse};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -30,7 +30,8 @@ class ProductController extends Controller
         $categories = Category::all();
         $units = Unit::all();
         $warehouses = Warehouse::all();
-        return view('backend.product.create', compact('brands', 'categories', 'units', 'warehouses'));
+        $suppliers = Supplier::all();
+        return view('backend.product.create', compact('brands', 'categories', 'units', 'warehouses', 'suppliers'));
     }
 
     /**
@@ -42,19 +43,25 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required',
+            'code' => 'required|unique:products,code',
             'name' => 'required',
             'brand_id' => 'required',
             'category_id' => 'required',
             'subcategory_id' => 'required',
-            'cost' => 'required',
-            'price' => 'required',
+            'cost' => 'required|decimal:0,2|min:0',
+            'price' => 'required|decimal:0,2|min:0',
             'unit_id' => 'required',
             'stock_alert' => 'required|numeric|min:0',
             'tax_type' => 'required',
-            'order_tax' => 'required|numeric|min:0',
+            'order_tax' => 'required|decimal:0,2|min:0',
+            'warehouse_id' => 'required',
+            'supplier_id' => 'required',
+            'quantity' => 'required|numeric|min:0',
+            'status' => 'required',
         ]);
-        return $request;
+        $product = Product::create($request->except('_token'));
+        return $product->id;
+        return back()->with('success', 'Product Added Successfully!');
     }
 
     /**

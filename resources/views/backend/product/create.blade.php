@@ -148,7 +148,7 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Product Price</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control @error('cost') is-invalid @enderror"
+                                        <input type="text" class="form-control @error('price') is-invalid @enderror"
                                             name="price" value="{{ old('price') }}">
                                         <span
                                             class="input-group-text">{{ App\Models\Currency::where('id', setting('currency'))->first()->symbol }}</span>
@@ -184,7 +184,7 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Stock Alert</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control @error('stock_alert') is-invalid @enderror"
+                                        <input type="number" class="form-control @error('stock_alert') is-invalid @enderror"
                                             name="stock_alert" value="{{ old('stock_alert') }}">
                                     </div>
                                     @error('stock_alert')
@@ -240,7 +240,9 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Warehouse</h6>
                                     </label>
                                     <div class="input-group">
-                                        <select class="form-select @error('warehouse_id') is-invalid @enderror" name="warehouse_id">
+                                        <select class="form-select @error('warehouse_id') is-invalid @enderror"
+                                            name="warehouse_id">
+                                            <option value="">-Select One Warehouse-</option>
                                             @foreach ($warehouses as $warehouse)
                                                 <option {{ $warehouse->id == old('warehouse_id') ? 'selected' : '' }}
                                                     value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
@@ -258,10 +260,16 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Supplier</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control @error('stock_alert') is-invalid @enderror"
-                                            name="stock_alert" value="{{ old('stock_alert') }}">
+                                        <select class="form-select @error('supplier_id') is-invalid @enderror"
+                                            name="supplier_id">
+                                            <option value="">-Select One Supplier-</option>
+                                            @foreach ($suppliers as $supplier)
+                                                <option {{ $supplier->id == old('supplier_id') ? 'selected' : '' }}
+                                                    value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    @error('stock_alert')
+                                    @error('supplier_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     <!--end::Input group-->
@@ -272,10 +280,10 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Add Product Quantity</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control @error('order_tax') is-invalid @enderror"
-                                            name="order_tax" value="{{ old('order_tax') }}">
+                                        <input type="number" class="form-control @error('quantity') is-invalid @enderror"
+                                            name="quantity" value="{{ old('quantity') }}">
                                     </div>
-                                    @error('order_tax')
+                                    @error('quantity')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     <!--end::Input group-->
@@ -286,16 +294,16 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Status</h6>
                                     </label>
                                     <div class="input-group">
-                                        <select class="form-select @error('tax_type') is-invalid @enderror" name="tax_type">
-                                            <option {{ old('tax_type') == 'exclusive' ? 'selected' : '' }} value="exclusive">
+                                        <select class="form-select @error('status') is-invalid @enderror" name="status">
+                                            <option {{ old('status') == 'received' ? 'selected' : '' }} value="received">
                                                 Received</option>
-                                            <option {{ old('tax_type') == 'inclusive' ? 'selected' : '' }} value="inclusive">
+                                            <option {{ old('status') == 'pending' ? 'selected' : '' }} value="pending">
                                                 Pending</option>
-                                            <option {{ old('tax_type') == 'inclusive' ? 'selected' : '' }} value="inclusive">
+                                            <option {{ old('status') == 'ordered' ? 'selected' : '' }} value="ordered">
                                                 Ordered</option>
                                         </select>
                                     </div>
-                                    @error('tax_type')
+                                    @error('status')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     <!--end::Input group-->

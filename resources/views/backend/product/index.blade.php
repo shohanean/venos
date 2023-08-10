@@ -20,5 +20,24 @@
 
 @section('content')
     <a class="btn btn-warning" href="{{ route('product.create') }}">Add New Product</a>
-    <p>{{ $products }}</p>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th><b>code</b></th>
+                    <th><b>name</b></th>
+                    <th><b>cost</b></th>
+                    <th><b>price</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    <tr>
+                        <td>{{ $product->code }}</td>
+                        <td>{{ $product->name }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
