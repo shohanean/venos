@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Product, Brand, Category, Supplier, Unit, Warehouse};
+use App\Models\{Product, Brand, Category, Inventory, Supplier, Unit, Warehouse};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('inventory')->latest()->get();
         return view('backend.product.index', compact('products'));
     }
 
@@ -59,8 +59,26 @@ class ProductController extends Controller
             'quantity' => 'required|numeric|min:0',
             'status' => 'required',
         ]);
-        $product = Product::create($request->except('_token'));
-        return $product->id;
+        $product = Product::create($request->except([
+            '_token',
+            'cost',
+            'price',
+            'tax_type',
+            'order_tax',
+            'warehouse_id',
+            'quantity',
+            'status'
+        ]));
+        $inventory = new Inventory;
+        $inventory->product_id = $product->id;
+        $inventory->cost = $request->cost;
+        $inventory->price = $request->price;
+        $inventory->tax_type = $request->tax_type;
+        $inventory->order_tax = $request->order_tax;
+        $inventory->warehouse_id = $request->warehouse_id;
+        $inventory->quantity = $request->quantity;
+        $inventory->status = $request->status;
+        $inventory->save();
         return back()->with('success', 'Product Added Successfully!');
     }
 
@@ -72,7 +90,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // return view('backend.product.show', compact('product'));
+        $product->load('inventory');
+        return view('backend.product.show', compact('product'));
     }
 
     /**
@@ -83,7 +102,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        // return view('backend.product.edit');
+        return view('backend.product.edit');
     }
 
     /**

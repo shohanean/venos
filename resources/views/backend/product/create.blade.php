@@ -90,6 +90,18 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
+                                <div class="col-12 col-md-12">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold">Product Description</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <textarea class="form-control" name="description" rows="2"></textarea>
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                            </div>
+                            <div class="row mt-3">
                                 <div class="col-12 col-md-4">
                                     <!--begin::Input group-->
                                     <label>
@@ -217,7 +229,8 @@
                                     </label>
                                     <div class="input-group">
                                         @if (old('order_tax'))
-                                            <input type="text" class="form-control @error('order_tax') is-invalid @enderror"
+                                            <input type="text"
+                                                class="form-control @error('order_tax') is-invalid @enderror"
                                                 name="order_tax" value="{{ old('order_tax') }}">
                                         @else
                                             <input type="text"
