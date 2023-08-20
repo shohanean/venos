@@ -39,26 +39,36 @@
                             <div class="col-4">
                                 <ul>
                                     <li>Code: <span class="badge bg-info">{{ $product->code }}</span></li>
-                                    <li>{{  $product }}</li>
-                                    <li>asdasd</li>
-                                    <li>asdasd</li>
+                                    <li>Category: {{ $product->category->category_name }} <i class="fa fa-tag"></i></li>
+                                    <li>Stock Alert: {{ $product->stock_alert }} <i
+                                            class="fa fa-exclamation-triangle text-danger"></i> </li>
+                                    <li>{{ $product->created_at }}</li>
                                 </ul>
                             </div>
                             <div class="col-4">
                                 <ul>
-                                    <li>asdasd</li>
-                                    <li>asdasd</li>
-                                    <li>asdasd</li>
-                                    <li>asdasd</li>
+                                    <li>Name: {{ $product->name }}</li>
+                                    <li>Subcategory: {{ $product->subcategory_id }} </li>
+                                    <li>Supplier: {{ $product->supplier->name }} (<a
+                                            href="tel:{{ $product->supplier->phone_number }}">{{ $product->supplier->phone_number }}</a>)
+                                    </li>
+                                    <li>{{ $product->updated_at }}</li>
                                 </ul>
                             </div>
                             <div class="col-4">
                                 <ul>
-                                    <li>asdasd</li>
-                                    <li>asdasd</li>
-                                    <li>asdasd</li>
-                                    <li>asdasd</li>
+                                    <li>Brand: {{ $product->brand->name }}</li>
+                                    <li>Unit: {{ $product->unit->name }}</li>
+                                    <li>Total Available Quantity: {{ $product->inventory->sum('quantity') }}</li>
+                                    <li>{{ $product->deleted_at ?? 'Not Deleted Yet' }}</li>
                                 </ul>
+                            </div>
+                            <div class="col-12">
+                                <div class="card bg-light">
+                                    <div class="card-body p-3">
+                                        Description: {{ $product->description }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,7 +84,7 @@
                     <!--begin::Header-->
                     <div class="card-header border-0">
                         <h3 class="card-title fw-bolder text-dark">
-                            Product Details - [{{ $product->name }}]
+                            Available Inventory of "{{ $product->name }}"
                         </h3>
                     </div>
                     <!--end::Header-->
@@ -83,18 +93,20 @@
                         <div class="table-responsive">
                             <table class="table table-row-dashed">
                                 <thead>
-                                    <tr>
-                                        <th>cost</th>
-                                        <th>price</th>
-                                        <th>tax_type</th>
-                                        <th>order_tax</th>
-                                        <th>quantity</th>
+                                    <tr class="fw-bold text-muted bg-light">
+                                        <th class="ps-4 rounded-start">Product Cost</th>
+                                        <th>Product Price</th>
+                                        <th>Tax Type</th>
+                                        <th>Order Tax (%)</th>
+                                        <th>Warehouse</th>
+                                        <th>Status</th>
+                                        <th class="rounded-end">Available Quantity</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($product->inventory as $inventory)
+                                    @forelse ($product->inventory as $inventory)
                                         <tr>
-                                            <td>{{ $inventory->cost }}</td>
+                                            <td class="ps-4">{{ $inventory->cost }}</td>
                                             <td>
                                                 {{ $inventory->price }}
                                                 @if ($inventory->cost < $inventory->price)
@@ -108,10 +120,22 @@
                                                 @endif
                                             </td>
                                             <td>{{ $inventory->tax_type }}</td>
-                                            <td>{{ $inventory->order_tax }}</td>
+                                            <td>{{ $inventory->order_tax }}%</td>
+                                            <td>
+                                                {{ $inventory->warehouse->name }}
+                                                <br>
+                                                <i class="fa fa-map-pin"></i> {{ $inventory->warehouse->address }}
+                                            </td>
+                                            <td>
+                                                {{ $inventory->status }}
+                                            </td>
                                             <td>{{ $inventory->quantity }}</td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr class="text-center text-danger">
+                                            <td colspan="50">There is no inventory of this product</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

@@ -15,4 +15,20 @@ class Product extends Model
     {
         return $this->hasMany(Inventory::class, 'product_id', 'id');
     }
+    function brand()
+    {
+        return $this->hasOne(Brand::class, 'id', 'brand_id');
+    }
+    function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+    function unit()
+    {
+        return $this->hasOne(Unit::class, 'id', 'unit_id');
+    }
+    function supplier()
+    {
+        return $this->hasOne(Supplier::class, 'id', 'supplier_id');
+    }
 }

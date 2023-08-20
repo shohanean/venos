@@ -90,7 +90,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->load('inventory');
+        $product->load('inventory', 'brand', 'category', 'unit', 'supplier');
         return view('backend.product.show', compact('product'));
     }
 

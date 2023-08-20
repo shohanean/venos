@@ -10,4 +10,9 @@ class Inventory extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
+
+    function warehouse()
+    {
+        return $this->hasOne(Warehouse::class, 'id', 'warehouse_id');
+    }
 }
