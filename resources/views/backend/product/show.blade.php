@@ -28,9 +28,11 @@
                 <div class="card card-xl-stretch mb-xl-8">
                     <!--begin::Header-->
                     <div class="card-header border-0">
-                        <h3 class="card-title fw-bolder text-dark">
-                            Product Details - [{{ $product->name }}]
-                        </h3>
+                        <div class="row">
+                            <h3 class="card-title fw-bolder text-dark">
+                                Product Details - [{{ $product->name }}]
+                            </h3>
+                        </div>
                     </div>
                     <!--end::Header-->
                     <!--begin::Body-->
@@ -38,7 +40,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <ul>
-                                    <li>Code: <span class="badge bg-info">{{ $product->code }}</span></li>
+                                    <li>Code: {{ $product->code }}
                                     <li>Category: {{ $product->category->category_name }} <i class="fa fa-tag"></i></li>
                                     <li>Stock Alert: {{ $product->stock_alert }} <i
                                             class="fa fa-exclamation-triangle text-danger"></i> </li>
@@ -60,7 +62,14 @@
                                     <li>Brand: {{ $product->brand->name }}</li>
                                     <li>Unit: {{ $product->unit->name }}</li>
                                     <li>Total Available Quantity: {{ $product->inventory->sum('quantity') }}</li>
-                                    <li>{{ $product->deleted_at ?? 'Not Deleted Yet' }}</li>
+                                    <li>
+                                        Status:
+                                        @if ($product->deleted_at)
+                                            <span class="badge bg-danger">Deactivated</span>
+                                        @else
+                                            <span class="badge bg-success">Active</span>
+                                        @endif
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-12">
@@ -78,7 +87,7 @@
             </div>
             <!--end::Col-->
             <!--begin::Col-->
-            <div class="col-xl-12">
+            <div class="col-xl-12 m-0">
                 <!--begin::List Widget 3-->
                 <div class="card card-xl-stretch mb-xl-8">
                     <!--begin::Header-->
@@ -119,7 +128,7 @@
                                                     <i class="fa fa-arrow-down text-danger" aria-hidden="true"></i>
                                                 @endif
                                             </td>
-                                            <td>{{ $inventory->tax_type }}</td>
+                                            <td>{{ Str::title($inventory->tax_type) }}</td>
                                             <td>{{ $inventory->order_tax }}%</td>
                                             <td>
                                                 {{ $inventory->warehouse->name }}
@@ -127,7 +136,8 @@
                                                 <i class="fa fa-map-pin"></i> {{ $inventory->warehouse->address }}
                                             </td>
                                             <td>
-                                                {{ $inventory->status }}
+                                                <span
+                                                    class="badge bg-light text-dark">{{ Str::title($inventory->status) }}</span>
                                             </td>
                                             <td>{{ $inventory->quantity }}</td>
                                         </tr>
