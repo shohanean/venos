@@ -15,4 +15,8 @@ class Inventory extends Model
     {
         return $this->hasOne(Warehouse::class, 'id', 'warehouse_id');
     }
+    function supplier()
+    {
+        return $this->hasOne(Supplier::class, 'id', 'supplier_id');
+    }
 }

@@ -27,8 +27,4 @@ class Product extends Model
     {
         return $this->hasOne(Unit::class, 'id', 'unit_id');
     }
-    function supplier()
-    {
-        return $this->hasOne(Supplier::class, 'id', 'supplier_id');
-    }
 }

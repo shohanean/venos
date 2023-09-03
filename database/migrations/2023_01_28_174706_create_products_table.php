@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('subcategory_id');
             $table->integer('unit_id');
             $table->integer('stock_alert');
-            $table->integer('supplier_id');
             $table->timestamps();
             $table->softDeletes();
         });

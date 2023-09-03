@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('price', $precision = 8, $scale = 2);
             $table->string('tax_type');
             $table->decimal('order_tax', $precision = 8, $scale = 2);
+            $table->integer('supplier_id');
             $table->integer('warehouse_id');
             $table->integer('quantity');
             $table->string('status');

@@ -66,6 +66,7 @@ class ProductController extends Controller
             'tax_type',
             'order_tax',
             'warehouse_id',
+            'supplier_id',
             'quantity',
             'status'
         ]));
@@ -76,6 +77,7 @@ class ProductController extends Controller
         $inventory->tax_type = $request->tax_type;
         $inventory->order_tax = $request->order_tax;
         $inventory->warehouse_id = $request->warehouse_id;
+        $inventory->supplier_id = $request->supplier_id;
         $inventory->quantity = $request->quantity;
         $inventory->status = $request->status;
         $inventory->save();
@@ -90,7 +92,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->load('inventory', 'brand', 'category', 'unit', 'supplier');
+        $product->load('inventory', 'brand', 'category', 'unit');
         return view('backend.product.show', compact('product'));
     }
 

@@ -26,11 +26,26 @@
                 <!--begin::Tables Widget 9-->
                 <div class="card card-xl-stretch mb-5 mb-xl-8">
                     <!--begin::Header-->
-                    <div class="card-header border-0 pt-5 align-items-center">
-                        <span class="card-label fw-bolder fs-3 mb-1">
-                            Product List
-                        </span>
-                        <a class="btn btn-warning" href="{{ route('product.create') }}">Add New Product</a>
+                    <div class="card-header border-0 pt-5">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bolder fs-3 mb-1">Product List</span>
+                            <span class="text-muted mt-1 fw-bold fs-7">Over {{ $products->count() }} Products</span>
+                        </h3>
+                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
+                            title="" data-bs-original-title="Click to add a new product">
+                            <a href="{{ route('product.create') }}" class="btn btn-sm btn-light btn-active-primary" >
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                <span class="svg-icon svg-icon-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
+                                            fill="currentColor"></rect>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Add New Product</a>
+                        </div>
                     </div>
                     <!--end::Header-->
                     <!--begin::Body-->
