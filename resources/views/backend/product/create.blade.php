@@ -144,8 +144,9 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Product Cost</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control @error('cost') is-invalid @enderror"
-                                            name="cost" value="{{ old('cost') }}">
+                                        <input id="cost" type="text"
+                                            class="form-control @error('cost') is-invalid @enderror" name="cost"
+                                            value="{{ old('cost') }}">
                                         <span
                                             class="input-group-text">{{ App\Models\Currency::where('id', setting('currency'))->first()->symbol }}</span>
                                     </div>
@@ -290,11 +291,12 @@
                                 <div class="col-12 col-md-2">
                                     <!--begin::Input group-->
                                     <label>
-                                        <h6 class="font-size-lg text-dark font-weight-bold required">Add Product Quantity</h6>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Product Quantity</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                            name="quantity" value="{{ old('quantity') }}">
+                                        <input id="quantity" type="number"
+                                            class="form-control @error('quantity') is-invalid @enderror" name="quantity"
+                                            value="{{ old('quantity') }}">
                                     </div>
                                     @error('quantity')
                                         <span class="text-danger">{{ $message }}</span>
@@ -322,6 +324,42 @@
                                     <!--end::Input group-->
                                 </div>
                             </div>
+                            <hr class="py-1">
+                            <div class="row mt-3 border p-5">
+                                <div class="col-12 col-md-3">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Paid Amount</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control @error('quantity') is-invalid @enderror"
+                                            name="" value="">
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <!--begin::Input group-->
+                                    <label>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Paid</h6>
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="form-select @error('tax_type') is-invalid @enderror" name="">
+                                            <option value="">Full Paid</option>
+                                            <option value="">Due</option>
+                                            <option value="">Partial Paid</option>
+                                        </select>
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-12 col-md-3 text-center">
+                                    <h1>Total</h1>
+                                    <h1 class="text-success">345345</h1>
+                                </div>
+                                <div class="col-12 col-md-3 text-center">
+                                    <h1>Due</h1>
+                                    <h1 class="text-danger">345345</h1>
+                                </div>
+                            </div>
                             <!--begin::Input group-->
                             <div class="input-group mb-5">
                                 <button type="submit" class="btn btn-success mt-5">Add Product</button>
@@ -341,4 +379,12 @@
             </div>
         @endcan
     </div>
+@endsection
+@section('footer_scripts')
+    <script>
+        $("#cost").keyup(function() {
+            alert($("#cost").val());
+            alert($("#quantity").val());
+        });
+    </script>
 @endsection
