@@ -144,7 +144,7 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Product Cost</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input id="cost" type="text"
+                                        <input id="cost" type="number"
                                             class="form-control @error('cost') is-invalid @enderror" name="cost"
                                             value="{{ old('cost') }}">
                                         <span
@@ -230,11 +230,11 @@
                                     </label>
                                     <div class="input-group">
                                         @if (old('order_tax'))
-                                            <input type="text"
+                                            <input type="number"
                                                 class="form-control @error('order_tax') is-invalid @enderror"
                                                 name="order_tax" value="{{ old('order_tax') }}">
                                         @else
-                                            <input type="text"
+                                            <input type="number"
                                                 class="form-control @error('order_tax') is-invalid @enderror"
                                                 name="order_tax" value="0">
                                         @endif
@@ -329,35 +329,35 @@
                                 <div class="col-12 col-md-3">
                                     <!--begin::Input group-->
                                     <label>
-                                        <h6 class="font-size-lg text-dark font-weight-bold required">Paid Amount</h6>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Paid</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control @error('quantity') is-invalid @enderror"
-                                            name="" value="">
+                                        <select id="paid_option" class="form-select" name="paid_option">
+                                            <option value="full paid">Full Paid</option>
+                                            <option value="partial paid">Partial Paid</option>
+                                            <option value="full due">Full Due</option>
+                                        </select>
                                     </div>
                                     <!--end::Input group-->
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <!--begin::Input group-->
                                     <label>
-                                        <h6 class="font-size-lg text-dark font-weight-bold required">Paid</h6>
+                                        <h6 class="font-size-lg text-dark font-weight-bold required">Paid Amount</h6>
                                     </label>
                                     <div class="input-group">
-                                        <select class="form-select @error('tax_type') is-invalid @enderror" name="">
-                                            <option value="">Full Paid</option>
-                                            <option value="">Due</option>
-                                            <option value="">Partial Paid</option>
-                                        </select>
+                                        <input id="paid_amount" value="" readonly type="number" class="form-control"
+                                            name="paid_amount">
                                     </div>
                                     <!--end::Input group-->
                                 </div>
                                 <div class="col-12 col-md-3 text-center">
-                                    <h1>Total</h1>
-                                    <h1 class="text-success">345345</h1>
+                                    <h1>Total Cost</h1>
+                                    <h1 class="text-success" id="total_cost">0</h1>
                                 </div>
                                 <div class="col-12 col-md-3 text-center">
                                     <h1>Due</h1>
-                                    <h1 class="text-danger">345345</h1>
+                                    <h1 class="text-danger" id="due">0</h1>
                                 </div>
                             </div>
                             <!--begin::Input group-->
@@ -383,8 +383,52 @@
 @section('footer_scripts')
     <script>
         $("#cost").keyup(function() {
-            alert($("#cost").val());
-            alert($("#quantity").val());
+            var cost = $("#cost").val();
+            var quantity = $("#quantity").val();
+            var total_cost = cost * quantity;
+            $("#total_cost").html(total_cost);
+            $("#paid_amount").val(total_cost);
+            $("#paid_amount").attr('max', total_cost - 1);
+
+            //reset below part
+            $("#paid_option").val("full paid");
+            $("#due").html(0);
+            $("#paid_amount").attr('readonly', true);
+        });
+        $("#quantity").keyup(function() {
+            var cost = $("#cost").val();
+            var quantity = $("#quantity").val();
+            var total_cost = cost * quantity;
+            $("#total_cost").html(total_cost);
+            $("#paid_amount").val(total_cost);
+            $("#paid_amount").attr('max', total_cost - 1);
+
+            //reset below part
+            $("#paid_option").val("full paid");
+            $("#due").html(0);
+            $("#paid_amount").attr('readonly', true);
+        });
+
+        $("#paid_option").change(function() {
+            var paid_option = $(this).val();
+
+            if (paid_option == 'full paid') {
+                $("#due").html(0);
+                $("#paid_amount").val($("#total_cost").html());
+                $("#paid_amount").attr('readonly', true);
+            } else if (paid_option == 'partial paid') {
+                $("#due").html(0);
+                $("#paid_amount").val('');
+                $("#paid_amount").attr('readonly', false);
+            } else if (paid_option == 'full due') {
+                $("#due").html($("#total_cost").html());
+                $("#paid_amount").val(0);
+                $("#paid_amount").attr('readonly', true);
+            }
+        });
+
+        $("#paid_amount").keyup(function() {
+            $("#due").html($("#total_cost").html() - $(this).val());
         });
     </script>
 @endsection

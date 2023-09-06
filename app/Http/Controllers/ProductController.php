@@ -59,6 +59,14 @@ class ProductController extends Controller
             'quantity' => 'required|numeric|min:0',
             'status' => 'required',
         ]);
+        echo $request->cost;
+        echo "<br>";
+        echo $request->quantity;
+        echo "<br>";
+        echo $request->paid_option;
+        echo "<br>";
+        return $request->paid_amount;
+        die();
         $product = Product::create($request->except([
             '_token',
             'cost',
