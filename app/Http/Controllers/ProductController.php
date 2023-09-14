@@ -58,15 +58,8 @@ class ProductController extends Controller
             'supplier_id' => 'required',
             'quantity' => 'required|numeric|min:0',
             'status' => 'required',
+            'paid_amount' => 'required',
         ]);
-        echo $request->cost;
-        echo "<br>";
-        echo $request->quantity;
-        echo "<br>";
-        echo $request->paid_option;
-        echo "<br>";
-        return $request->paid_amount;
-        die();
         $product = Product::create($request->except([
             '_token',
             'cost',
@@ -76,7 +69,9 @@ class ProductController extends Controller
             'warehouse_id',
             'supplier_id',
             'quantity',
-            'status'
+            'status',
+            'paid_option',
+            'paid_amount'
         ]));
         $inventory = new Inventory;
         $inventory->product_id = $product->id;
@@ -89,7 +84,15 @@ class ProductController extends Controller
         $inventory->quantity = $request->quantity;
         $inventory->status = $request->status;
         $inventory->save();
-        return back()->with('success', 'Product Added Successfully!');
+        return $inventory;
+        echo $request->cost;
+        echo "<br>";
+        echo $request->quantity;
+        echo "<br>";
+        echo $request->paid_option;
+        echo "<br>";
+        return $request->paid_amount;
+        // return back()->with('success', 'Product Added Successfully!');
     }
 
     /**

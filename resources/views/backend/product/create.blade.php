@@ -346,9 +346,13 @@
                                         <h6 class="font-size-lg text-dark font-weight-bold required">Paid Amount</h6>
                                     </label>
                                     <div class="input-group">
-                                        <input id="paid_amount" value="" readonly type="number" class="form-control"
+                                        <input id="paid_amount" value="" readonly type="number"
+                                            class="form-control @error('paid_amount') is-invalid @enderror"
                                             name="paid_amount">
                                     </div>
+                                    @error('paid_amount')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <!--end::Input group-->
                                 </div>
                                 <div class="col-12 col-md-3 text-center">
